@@ -1,5 +1,23 @@
 # TIE-50307 Real-time systems
 
+--------------------------------------------------------------------------------
+## Important Notice
+
+This project uses a Git extension for versioning large binary files called [Git Large File Storage][git-lfs].
+
+Every clone of this repository **MUST** initialize the Git LFS extension. Immediately after a clone operation, inside the repository, the following command **MUST** be issued:
+
+~~~bash
+git lfs install
+~~~
+
+The above command will setup the correct *hooks* in the <u>local copy</u> of the repository: these *hooks* will automate the use of the LFS extension, so that, transparently, using the usual workflow of `git add`/`git commit`/`git push`, a selection of the files will be stored differently.
+
+The course VM already includes all the required dependencies to use this extension.
+
+--------------------------------------------------------------------------------
+
+
 ## How to use SSH remotes
 
 Using HTTPS remotes becomes quickly frustrating as it requires to input your credentials several times, even multiple times for a single `git` command.
@@ -31,3 +49,4 @@ If you need training to use Git, visit [Git Course in Plussa][git-plussa].
 [moodle]: https://moodle2.tut.fi/course/view.php?id=11830
 [git-plussa]: https://plus.cs.tut.fi/git/versio-1/
 [course_upstream project]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream
+[git-lfs]: https://git-lfs.github.com/
