@@ -29,7 +29,7 @@ Read [this document](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/cour
 ## Quick guide to pull new exercise instructions
 
 1. *(only-once)* `git remote add course_upstream https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream.git`
-2. `git pull course_upstream`
+2. `git pull course_upstream master`
 
 **Note**: visit the [course_upstream project] to grab the SSH remote URL if you set up access with SSH keys.
 
