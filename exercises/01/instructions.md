@@ -32,6 +32,7 @@ The username and (very secure) password for the VM account are: `student`/`stude
   - add each of these repositories as [Git Submodules] in the root of the student group repository
 - [ ] initialize the Build Environment, **making sure the *Build Directory* is created as `<STUDENT_REPO_ROOT>/build`**
   - notice that we require the *Build Directory* to be in a non-default location, requiring knowledge from the [linked section of the *Yocto Reference Manual*][YoctoREFMAN:sec7.1]
+  - <u>DO NOT COMMIT THE WHOLE BUILD DIRECTORY</u>: only the configuration files should be committed.
 - [ ] setup your local configuration file
 - [ ] build `core-image-minimal`
   - **Hint**: building from scratch could require hours. Read on the *Yocto Reference Manual* about the `SSTATE_MIRRORS` variable and check the contents of `/opt/poky_cache` to speed up this step
