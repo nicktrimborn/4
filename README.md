@@ -22,13 +22,13 @@ The course VM already includes all the required dependencies to use this extensi
 
 Using HTTPS remotes becomes quickly frustrating as it requires to input your credentials several times, even multiple times for a single `git` command.
 
-Read [this document](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream/snippets/20) for tips on how to securely use a semipermanent `git` profile with SSH keys for the shared VM environment of the course.
+Read [this document](https://course-gitlab.tuni.fi/tie-50307-real-time-systems_2019-2020/course_upstream/snippets/1) for tips on how to securely use a semipermanent `git` profile with SSH keys for the shared VM environment of the course.
 
 **Note**: If you choose to setup access through SSH keys, remember to use the SSH remote URL to clone your student repository and for the `course_upstream` remote.
 
 ## Quick guide to pull new exercise instructions
 
-1. *(only-once)* `git remote add course_upstream https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream.git`
+1. *(only-once)* `git remote add course_upstream https://course-gitlab.tuni.fi/tie-50307-real-time-systems_2019-2020/course_upstream.git`
 2. `git pull course_upstream master`
 
 **Note**: visit the [course_upstream project] to grab the SSH remote URL if you set up access with SSH keys.
@@ -46,7 +46,7 @@ Read [this document](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/cour
 If you need training to use Git, visit [Git Course in Plussa][git-plussa].
 
 
-[moodle]: https://moodle2.tut.fi/course/view.php?id=11830
-[git-plussa]: https://plus.cs.tut.fi/git/versio-1/
-[course_upstream project]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream
+[moodle]: https://moodle.tuni.fi/course/view.php?id=2227
+[git-plussa]: https://plus.cs.tut.fi/git/versio-2/
+[course_upstream project]: https://course-gitlab.tuni.fi/tie-50307-real-time-systems_2019-2020/course_upstream
 [git-lfs]: https://git-lfs.github.com/

@@ -32,6 +32,7 @@ The username and (very secure) password for the VM account are: `student`/`stude
   - add each of these repositories as [Git Submodules] in the root of the student group repository
 - [ ] initialize the Build Environment, **making sure the *Build Directory* is created as `<STUDENT_REPO_ROOT>/build`**
   - notice that we require the *Build Directory* to be in a non-default location, requiring knowledge from the [linked section of the *Yocto Reference Manual*][YoctoREFMAN:sec7.1]
+  - <u>DO NOT COMMIT THE WHOLE BUILD DIRECTORY</u>: only the configuration files should be committed.
 - [ ] setup your local configuration file
 - [ ] build `core-image-minimal`
   - **Hint**: building from scratch could require hours. Read on the *Yocto Reference Manual* about the `SSTATE_MIRRORS` variable and check the contents of `/opt/poky_cache` to speed up this step
@@ -57,7 +58,7 @@ The username and (very secure) password for the VM account are: `student`/`stude
 
 [Git Submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [YoctoQS]: https://www.yoctoproject.org/docs/2.4.3/yocto-project-qs/yocto-project-qs.html
-[moodle.tie50307]: https://moodle2.tut.fi/course/view.php?id=11830
+[moodle.tie50307]: https://moodle.tuni.fi/course/view.php?id=2227
 [YoctoREFMAN:sec7.1]: https://www.yoctoproject.org/docs/2.4.3/ref-manual/ref-manual.html#structure-core
 [PYNQ-Z1-REFMAN]: https://reference.digilentinc.com/_media/reference/programmable-logic/pynq-z1/pynq-rm.pdf
-[meta-pynq]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/meta-pynq
+[meta-pynq]: https://course-gitlab.tuni.fi/tie-50307-real-time-systems_2019-2020/meta-pynq
