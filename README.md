@@ -1,7 +1,7 @@
 # TIE-50307 Real-time systems
 
 --------------------------------------------------------------------------------
-## Important Notice
+## Important Notice about LFS
 
 This project uses a Git extension for versioning large binary files called [Git Large File Storage][git-lfs].
 
@@ -17,6 +17,29 @@ The course VM already includes all the required dependencies to use this extensi
 
 --------------------------------------------------------------------------------
 
+## Quick guide to resume your work after rebooting the VM
+
+1. `cd ~`
+2. `git clone --recurse-submodules <STUDENT_REPO_URL> [<LOCAL_CLONE_DIR>]`
+   - by default, if you don't specify `<LOCAL_CLONE_DIR>` the local clone will be in `~/NN/`, if for any reason, during the first exercise you used a different name or path, make sure to replicate the one you used previously, or the layers configuration you committed previously will be incorrect;
+3. `cd <LOCAL_CLONE_DIR>; git lfs install && git lfs pull`
+
+
+
+## Quick guide to pull new exercise instructions
+
+1. *(only-once per clone)* `git remote add course_upstream https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream.git`
+2. `git pull course_upstream master`
+
+**Note**: visit the [course_upstream project] to grab the SSH remote URL if you set up access with SSH keys.
+
+## Quick guide to submit the exercise assignment
+
+1. `git commit` - remember to *add* new files
+2. `git push`
+3. Create tag for submission in GitLab - format `ExNN_submissionN`
+4. `git push --tags`
+5. Submit a link to the tag on the corresponding assignment in [Moodle][moodle]
 
 ## How to use SSH remotes
 
@@ -26,20 +49,6 @@ Read [this document](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/cour
 
 **Note**: If you choose to setup access through SSH keys, remember to use the SSH remote URL to clone your student repository and for the `course_upstream` remote.
 
-## Quick guide to pull new exercise instructions
-
-1. *(only-once)* `git remote add course_upstream https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream.git`
-2. `git pull course_upstream master`
-
-**Note**: visit the [course_upstream project] to grab the SSH remote URL if you set up access with SSH keys.
-
-## Quick guide to submit exercise assignment
-
-1. `git commit` - remember to *add* new files
-2. `git push`
-3. Create tag for submission in GitLab - format `ExNN_submissionN`
-4. `git push --tags`
-5. Submit a link to the tag on the corresponding assignment in [Moodle][moodle]
 
 ## Git Help
 
