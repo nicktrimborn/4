@@ -25,11 +25,12 @@ The course VM already includes all the required dependencies to use this extensi
 3. `cd <LOCAL_CLONE_DIR>; git lfs install && git lfs pull`
 
 
-
 ## Quick guide to pull new exercise instructions
 
 1. *(only-once per clone)* `git remote add course_upstream https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream.git`
-2. `git pull course_upstream master`
+2. `git pull course_upstream master` 
+   - **WARNING:** if you experiment issues related to LFS during this step, start again from a clean state, add the remote, and then read https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream/snippets/35
+
 
 **Note**: visit the [course_upstream project] to grab the SSH remote URL if you set up access with SSH keys.
 
