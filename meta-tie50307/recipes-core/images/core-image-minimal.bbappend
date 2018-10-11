@@ -1,6 +1,7 @@
 
 # imported and base recipes
 IMAGE_INSTALL_append = "\
+    dtc \
     evil-mod \
     evil-tests \
     "
