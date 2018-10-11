@@ -64,6 +64,11 @@ The username and (very secure) password for the VM account are: `student`/`stude
 - [ ] write the `bitstream` file to the microSD root.
 - [ ] find the `irqgen-ex4` module C source code and study it referring to the spec document for the IRQ Generator IP block.
 - [ ] add yourselves as additional authors
+- [ ] discover the Linux IRQ number associated with the first IRQ line of the IP Generator device
+  - [ ] find the HWIRQ number for the first line of the IP Generator block, from the IP block spec
+  - [ ] match the HWIRQ number with the Linux IRQ number ([read this](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream/snippets/37))
+- [ ] discover the base address and size of the register space for the IP Generator device (we can read these from devicetree.dts)
+  - [ ] dig the details about the different registers of the IRQ Generator, their offsets, their fields and their purpose
 - Reiterate the following **until all the required functionality has been implemented and tested**:
   - [ ] boot the PYNQ board, login to the console (usr:`root`, no passwd), load the `irqgen_ex4`/`irqgen_ex4_dbg` module and test its functionality (load, unload, error handling)
   - [ ] edit (**only!!!**) `irqgen.c` and `irqgen_addresses.h`
