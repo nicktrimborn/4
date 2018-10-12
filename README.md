@@ -19,6 +19,8 @@ The course VM already includes all the required dependencies to use this extensi
 
 ## Quick guide to resume your work after rebooting the VM
 
+If you are using HTTPS remotes, you might want to run `git config --global credential.helper 'cache --timeout=3600'` before cloning: this way you will have to input your username and password only after 1 hour without interacting with your remote.
+
 1. `cd ~`
 2. `git clone --recurse-submodules <STUDENT_REPO_URL> [<LOCAL_CLONE_DIR>]`
    - by default, if you don't specify `<LOCAL_CLONE_DIR>` the local clone will be in `~/NN/`, if for any reason, during the first exercise you used a different name or path, make sure to replicate the one you used previously, or the layers configuration you committed previously will be incorrect;
@@ -27,12 +29,19 @@ The course VM already includes all the required dependencies to use this extensi
 
 ## Quick guide to pull new exercise instructions
 
-1. *(only-once per clone)* `git remote add course_upstream https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream.git`
-2. `git pull course_upstream master` 
-   - **WARNING:** if you experiment issues related to LFS during this step, start again from a clean state, add the remote, and then read https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream/snippets/35
+It is sufficient to run the following script (**from the root of your repository**):
 
+```bash
+cd <STUDENT_REPO_ROOT>
+scripts/update_from_course_upstream.sh
+```
 
-**Note**: visit the [course_upstream project] to grab the SSH remote URL if you set up access with SSH keys.
+Alternatively you could [download the script from your browser][update_from_course_upstream] to `/tmp/`, and then run it **from the root of your repository**:
+
+```bash
+cd <STUDENT_REPO_ROOT>
+bash /tmp/update_from_course_upstream.sh
+```
 
 ## Quick guide to submit the exercise assignment
 
@@ -50,6 +59,7 @@ Read [this document](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/cour
 
 **Note**: If you choose to setup access through SSH keys, remember to use the SSH remote URL to clone your student repository and for the `course_upstream` remote.
 
+If you decide to use HTTPS remotes, you might want to run `git config --global credential.helper 'cache --timeout=3600'` before cloning: this way you will have to input your username and password only after 1 hour without interacting with your remote.
 
 ## Git Help
 
@@ -60,3 +70,4 @@ If you need training to use Git, visit [Git Course in Plussa][git-plussa].
 [git-plussa]: https://plus.cs.tut.fi/git/versio-1/
 [course_upstream project]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream
 [git-lfs]: https://git-lfs.github.com/
+[update_from_course_upstream]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream/raw/master/scripts/update_from_course_upstream.sh
