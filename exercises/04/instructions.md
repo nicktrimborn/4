@@ -51,7 +51,11 @@ The username and (very secure) password for the VM account are: `student`/`stude
   - [*Linux Kernel Development (3rd ed.)* (2010)][book:LKD:2010]
   - *seminar presentations from the last weeks*
   - Familiarize with `ioremap`, `ioread32`, `iowrite32`, and `linux/bitfield.h` to work with bitfields in HW device registers
-
+  - [About Linux IRQ numbers and HW IRQ numbers](../04/finding_the_Linux_IRQ_number.md)
+  - [ERRNO manpage, for selecting proper error codes][man:3:errno]
+- Reference documents and manuals for the course project
+  - [IRQ generator v1.1 FPGA core guide](../04/irq_generator_v1_1.pdf)
+  - [Devicetree Specification v0.2][devtree-spec]
 
 # Checklist
 
@@ -66,7 +70,7 @@ The username and (very secure) password for the VM account are: `student`/`stude
 - [ ] add yourselves as additional authors
 - [ ] discover the Linux IRQ number associated with the first IRQ line of the IP Generator device
   - [ ] find the HWIRQ number for the first line of the IP Generator block, from the IP block spec
-  - [ ] match the HWIRQ number with the Linux IRQ number ([read this](https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream/snippets/37))
+  - [ ] match the HWIRQ number with the Linux IRQ number ([read this](finding_the_Linux_IRQ_number.md))
 - [ ] discover the base address and size of the register space for the IP Generator device (we can read these from devicetree.dts)
   - [ ] dig the details about the different registers of the IRQ Generator, their offsets, their fields and their purpose
 - Reiterate the following **until all the required functionality has been implemented and tested**:
@@ -90,6 +94,8 @@ The username and (very secure) password for the VM account are: `student`/`stude
 [bitbakeUSRMAN]: https://www.yoctoproject.org/docs/2.4.3/bitbake-user-manual/bitbake-user-manual.html
 [PYNQ-Z1-REFMAN]: https://reference.digilentinc.com/_media/reference/programmable-logic/pynq-z1/pynq-rm.pdf
 [meta-pynq]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/meta-pynq
+[devtree-spec]: https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.2
+[man:3:errno]: http://man7.org/linux/man-pages/man3/errno.3.html
 [book:LDDD:2017]: https://tut.finna.fi/Record/tutcat.256856
 [book:LDD3:2005]: https://tut.finna.fi/Record/tutcat.256859
 [book:LKD:2010]: https://tut.finna.fi/Record/tutcat.256860
