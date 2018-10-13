@@ -92,6 +92,7 @@ else
     msg "Checking out branch ${LBRANCH_NAME} to track ${REMOTE_NAME}/${RBRANCH_NAME}"
     ${GIT} checkout -b ${LBRANCH_NAME} ${REMOTE_NAME}/${RBRANCH_NAME}
 fi
+${GIT} fetch --all --tags
 msg "LFS fetch and checkout from ${REMOTE_NAME}"
 ${GIT} lfs fetch ${REMOTE_NAME}
 ${GIT} lfs checkout
