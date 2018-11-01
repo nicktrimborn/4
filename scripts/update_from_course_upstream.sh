@@ -3,7 +3,7 @@
 GIT=`which git`
 
 function msg_ex() {
-    echo "$@" >&2
+    echo -e "$@" >&2
 }
 
 function msg() {
@@ -12,6 +12,17 @@ function msg() {
 
 set -e
 . "$(${GIT} --exec-path)/git-sh-setup"
+
+function require_user_name_and_email() {
+    if ${GIT} config user.name >/dev/null && ${GIT} config user.email >/dev/null; then
+        true
+    else
+        msg "You need to configure your git user name and email"
+        msg_ex "\tgit config user.name \"<Your Name>\""
+        msg_ex "\tgit config user.email your@email.com"
+        die "Configure Git user name and email"
+    fi
+}
 
 function require_clean_work_tree_and_no_untracked() {
     local action=$1
@@ -64,6 +75,7 @@ function ssh_or_https_remote() {
 }
 
 cd_to_toplevel
+require_user_name_and_email
 require_clean_work_tree_and_no_untracked pull "Please commit or stash them."
 GITURL_BASE="$(ssh_or_https_remote)"
 GITURL_COURSE_UPSTREAM="${GITURL_BASE}/course_upstream.git"
