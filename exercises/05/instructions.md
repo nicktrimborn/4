@@ -60,15 +60,15 @@ The username and (very secure) password for the VM account are: `student`/`stude
   - [ ] remember to specify the path for the proper `build` folder when sourcing the Yocto script for setting up the build environment
   - [ ] build `core-image-minimal` once again, to verify that everything works.
 
-- [ ] Set up new project to Vivado (in the Windows Host)
-  - **WARNING**: Create and save your project in your P: drive, **NOT** in the repository
-  - [ ] Copy board definition files to vivado project folder and select pynq as a target.
+- [ ] set up new project in Vivado (on the Windows Host)
+  - **WARNING**: Create and save your project in your `P:` drive, **NOT** in the repository
+  - [ ] Copy the board definition files to the Vivado project folder and select PYNQ as a target.
   - [ ] Import the IP block sources
     - **WARNING**: DO **NOT** COPY THE SOURCE FILES INSIDE THE VIVADO PROJECT.
-  - [ ] Add the design testbench to vivado
+  - [ ] Add the design testbench to Vivado
   - [ ] Add the IRQ latency counter register and the logic in the Verilog code
   - [ ] Validate your design with given testbench
-  - [ ] Generate bitstream of your project
+  - [ ] Generate bitstream of your project (see [this file](vivado_irq_project.md))
   - [ ] Locate and copy the newly created .bit file to SD card as "Bitstream"
   - [ ] Commit and push your changes from the clone in `C:\Temp` to your repository on `course_gitlab`
 
@@ -106,5 +106,3 @@ The username and (very secure) password for the VM account are: `student`/`stude
 [book:LKD:2010]: https://tut.finna.fi/Record/tutcat.256860
 [book:YOCTO:2016]: https://tut.finna.fi/Record/tutcat.256857
 [book:linux-insides]: https://0xax.gitbooks.io/linux-insides/content/index.html
-
-
