@@ -1,8 +1,8 @@
-obj-m += irqgen_ex4.o
-obj-m += irqgen_ex4_dbg.o
+obj-m += irqgen.o
+obj-m += irqgen_dbg.o
 
-irqgen_ex4-objs := irqgen.o irqgen_sysfs.o
-irqgen_ex4_dbg-objs := irqgen_dbg.o irqgen_sysfs.o
+irqgen-objs := irqgen.o irqgen_sysfs.o
+irqgen_dbg-objs := irqgen_dbg.o irqgen_sysfs.o
 
 CFLAGS_irqgen_dbg.o += -DDEBUG
 
