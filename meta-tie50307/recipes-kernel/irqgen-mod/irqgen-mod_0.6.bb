@@ -7,8 +7,8 @@ inherit module
 SRC_URI = "\
         file://Makefile \
         file://COPYING \
-        file://irqgen.c \
-        file://irqgen_dbg.c \
+        file://irqgen_main.c \
+        file://irqgen_main_dbg.c \
         file://irqgen_addresses.h \
         file://irqgen.h \
         file://irqgen_sysfs.c \

@@ -1,10 +1,10 @@
 obj-m += irqgen.o
 obj-m += irqgen_dbg.o
 
-irqgen-objs := irqgen.o irqgen_sysfs.o
-irqgen_dbg-objs := irqgen_dbg.o irqgen_sysfs.o
+irqgen-objs := irqgen_main.o irqgen_sysfs.o
+irqgen_dbg-objs := irqgen_main_dbg.o irqgen_sysfs.o
 
-CFLAGS_irqgen_dbg.o += -DDEBUG
+CFLAGS_irqgen_main_dbg.o += -DDEBUG
 
 SRC := $(shell pwd)
 
