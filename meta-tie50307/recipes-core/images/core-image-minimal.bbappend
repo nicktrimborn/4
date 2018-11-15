@@ -8,3 +8,10 @@ IMAGE_INSTALL_append = "\
     irqgen-mod \
     "
 
+inherit extrausers
+
+EXTRA_USERS_PARAMS = "\
+        useradd pynq; \
+        usermod -p '' pynq; \
+    "
+
