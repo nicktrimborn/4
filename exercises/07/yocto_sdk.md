@@ -25,7 +25,7 @@ Full details are available in the [official manual][yocto-sdk-manual] (read it!)
 In short, assuming you downloaded the autoextracting script in `/tmp`:
 
 ```bash
-bash /tmp/poky-glibc-x86_64-core-image-minimal-cortexa9hf-neon-toolchain-2.4.3.sh -d ~/opt/poky_sdk
+bash /tmp/poky-glibc-x86_64-core-image-minimal-cortexa9hf-neon-toolchain-2.4.3.sh -d ~/opt/poky-sdk/2.4.3
 ```
 
 # Using the Yocto SDK

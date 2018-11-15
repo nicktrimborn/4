@@ -11,11 +11,11 @@ Your task, in short, is to fill the stub with the right functionality by resolvi
 
 The kernel module comes in a the `meta-tie50307` Yocto layer, under `recipes-kernel/irqgen-mod`.
 
-The spec document for the IRQ Generator module is included in the same folder where you found these instructions and contains important informations you will need to solve this exercise.
+The spec document for the IRQ Generator module is included in the same folder where you found these instructions and contains important information you will need to solve this exercise.
 
 **NOTE:** you will be using the `bitstream` you generated in EX05, which should now be feature complete w.r.t. the IRQ Generator Spec.
 
-**The guideline in *completing* the *stub* module source code is to limit yourself to fix only the items highlighted by FIXME and TODO comments. While you progress, you should remove the FIXME/TODO commets to keep track of your progress. Don't add new features and avoid any major redesign.**
+**The guideline in *completing* the *stub* module source code is to limit yourself to fix only the items highlighted by FIXME and TODO comments. While you progress, you should remove the FIXME/TODO commits to keep track of your progress. Don't add new features and avoid any major redesign.**
 
 As usual, rather than providing step-by-step instructions, we provide a list of reading materials and resources you should familiarize with in order to solve the task at hand.
 
@@ -27,6 +27,35 @@ The username and (very secure) password for the VM account are: `student`/`stude
 
 **REMINDER**: we strongly recommend you to add & commit your changes after each step (or even more frequently): saving your work and being able to revisit what you did and in what order is way more important than having a tidy git history. We are not going to evaluate your weekly exercises on the basis of the git history, but if we were to, several micro-commits would definitely look better than a single macro-commit pushing in one go all the changes and results of your task.
 
+# The `/dev/irqgen` character device interface
+
+In this exercise we will develop a special character device. This section gathers the relevant documentation.
+
+- `/dev/irqgen` is read-only
+- Reading from `/dev/irqgen` yields a [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) text file, each line contains:
+    ```csv
+    <irq_line>,<latency (clk)>,<event timestamp (ns)>\n
+    ```
+- A single `read` from the file must provide, at least a 60B buffer to fit a whole line
+- For the above specs, `/dev/irqgen` is anomalous as it's not byte-addressable: the smallest data unit is a "line", not a byte.
+- `/dev/irqgen` is sequential and not seekable: a single `read` will yield a line describing the next recorded IRQ event
+- `read`s when the IRQ event buffer is empty yield a length of 0, instead of blocking until more events are available
+
+## Testing `/dev/irqgen`
+
+The correctness of the character device can be tested using standard POSIX utils like `cat`, `wc`, `tee`, `tail`, etc.
+
+For example, to continuously keep reading the file, showing the output on the console and at the same time logging it into a regular file:
+
+```bash
+tail -f /dev/irqgen | tee -a ~/irqgen.csv &        # the ampersand will run the job on the background, letting you use the console to issue more commands
+echo 15  > /sys/kernel/irqgen/line                 # select IRQ line 15
+echo 100 > /sys/kernel/irqgen/amount               # request the generation of 100 IRQ requests on the selected line
+```
+
+Saving to a CSV file, and transferring it to your VM using the microSD is useful for easing the development process of the standalone app:
+at boot the microSD is mounted read-only on `/mnt/microsd`; remount it in rw-mode by `mount -o remount,rw /mnt/microsd`.
+Remind to `sync` after writing to make sure the changes are actually written back to the microsd chip, and `umount /mnt/microsd` beofre plugging it out or rebooting. (Unmounting is not strictly necessary if rebooting while mounted read-only).
 
 # Resources and reading material
 
@@ -64,12 +93,12 @@ The username and (very secure) password for the VM account are: `student`/`stude
   - [ ] boot the PYNQ board, login to the console (usr:`root`, no passwd), load the `irqgen`/`irqgen_dbg` module and test its functionality (load, unload, error handling, check and experiment with `/sys/kernel/irqgen/*`)
   - [ ] edit (**only!!!**) `irqgen_main.c`, `irqgen.h`, `irqgen_sysfs.c` and `irqgen_cdev.c`
   - [ ] rebuild `core-image-minimal` and deploy the updated images to the microSD card
-  - [ ] use the `sysfs` interface to generate interrupts while a background process reads from `/dev/irqgen`
+  - [ ] use the `sysfs` interface to generate interrupts while a background process reads from `/dev/irqgen` like demonstrated above
 - [ ] Use the [Yocto SDK for the PYNQ board][../07/yocto_sdk.md] to compile your `statistics` application according to [specification][../07/statistics_app/specs.md]
-- [ ] <u>**remeber to push all your commits to your remote repository**</u>
+- [ ] <u>**remember to push all your commits to your remote repository**</u>
 - [ ] demonstrate to the TA
 - [ ] <u>remember to recover your microSD card before leaving</u>
-- [ ] edit `exercises/06/questions.md` to provide your answers
+- [ ] edit `exercises/07/questions.md` to provide your answers
 
 
 [course_upstream]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream
