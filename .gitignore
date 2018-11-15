@@ -9,6 +9,7 @@
 /build/tmp/cache
 /build/tmp/deploy/*
 !/build/tmp/deploy/images
+!/build/tmp/deploy/sdk
 /build/tmp/hosttools
 /build/tmp/log
 /build/tmp/pkgdata
@@ -20,3 +21,4 @@
 /build/tmp/sysroots-uninative
 /build/tmp/work
 /build/tmp/work-shared
+*.testdata.json
