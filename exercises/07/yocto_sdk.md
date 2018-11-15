@@ -38,7 +38,5 @@ source ~/opt/poky-sdk/2.4.3/environment-setup-cortexa9hf-neon-poky-linux-gnueabi
 make <executable_name>
 ```
 
-<!--- Links ---!>
-
 [yocto-sdk-manual]: https://www.yoctoproject.org/docs/2.4.3/sdk-manual/sdk-manual.html
 [sdk-archive]: ../../build/tmp/deploy/sdk/poky-glibc-x86_64-core-image-minimal-cortexa9hf-neon-toolchain-2.4.3.sh
