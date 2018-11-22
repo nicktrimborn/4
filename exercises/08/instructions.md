@@ -48,14 +48,10 @@ The username and (very secure) password for the VM account are: `student`/`stude
 - Enable local network [connection](lab_nic_setup.md)
 - Familiarize with the contents of [scripts/](./scripts/)
 - Run [scripts/testandplot.sh](scripts/testandplot.sh) in the following scenarios (for each save the csv, the metadata and the plot in the repository. You might want to reboot the PYNQ board in-between runs):
-  - RT Linux, delay=10000, no torture
   - RT Linux, delay=0, no torture
   - RT Linux, delay=0, torture
-  - RT Linux, delay=10000, torture
-  - no-RT Linux, delay=10000, no torture
   - no-RT Linux, delay=0, no torture
   - no-RT Linux, delay=0, torture
-  - no-RT Linux, delay=10000, torture
 - Answer questions 6 & 7
 - We will now flood the system with IRQs (e.g., commenting out the acknowledgment step in the interrupt handler):
   - try this both on the RT and non-RT image, then answer question 8 and 9
@@ -64,22 +60,22 @@ The username and (very secure) password for the VM account are: `student`/`stude
 - [ ] <u>remember to recover your microSD card before leaving and restoring the original network cable setup</u>
 
 
-[course_upstream]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/course_upstream
+[course_upstream]: https://course-gitlab.tuni.fi/tie-50307-real-time-systems_2019-2020/course_upstream
 [Git_Submodules]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 [YoctoQS]: https://www.yoctoproject.org/docs/2.4.3/yocto-project-qs/yocto-project-qs.html
-[moodle.tie50307]: https://moodle2.tut.fi/course/view.php?id=11830
+[moodle.tie50307]: https://moodle.tuni.fi/course/view.php?id=2227
 [YoctoDEVMAN:cha4]: https://www.yoctoproject.org/docs/2.4.3/dev-manual/dev-manual.html#extendpoky
 [YoctoREFMAN]: https://www.yoctoproject.org/docs/2.4.3/ref-manual/ref-manual.html
 [YoctoKDEVMAN:sec2.10]: https://www.yoctoproject.org/docs/2.4.3/kernel-dev/kernel-dev.html#working-with-out-of-tree-modules
 [bitbakeUSRMAN]: https://www.yoctoproject.org/docs/2.4.3/bitbake-user-manual/bitbake-user-manual.html
 [PYNQ-Z1-REFMAN]: https://reference.digilentinc.com/_media/reference/programmable-logic/pynq-z1/pynq-rm.pdf
-[meta-pynq]: https://course-gitlab.tut.fi/tie-50307-rt-systems-2018/meta-pynq
+[meta-pynq]: https://course-gitlab.tuni.fi/tie-50307-real-time-systems_2019-2020/meta-pynq
 [devtree-spec]: https://github.com/devicetree-org/devicetree-specification/releases/tag/v0.2
 [man:3:errno]: http://man7.org/linux/man-pages/man3/errno.3.html
-[book:LDDD:2017]: https://tut.finna.fi/Record/tutcat.256856
-[book:LDD3:2005]: https://tut.finna.fi/Record/tutcat.256859
-[book:LKD:2010]: https://tut.finna.fi/Record/tutcat.256860
-[book:YOCTO:2016]: https://tut.finna.fi/Record/tutcat.256857
+[book:LDDD:2017]: https://tuni.finna.fi/Record/oma.833606
+[book:LDD3:2005]: https://tuni.finna.fi/Record/tutcat.256859
+[book:LKD:2010]: https://tuni.finna.fi/Record/oma.249466
+[book:YOCTO:2016]: https://tuni.finna.fi/Record/tutcat.256857
 [book:linux-insides]: https://0xax.gitbooks.io/linux-insides/content/index.html
 [yocto-sdk-manual]: https://www.yoctoproject.org/docs/2.4.3/sdk-manual/sdk-manual.html
 [sdk-archive]: ../../build/tmp/deploy/sdk/poky-glibc-x86_64-core-image-minimal-cortexa9hf-neon-toolchain-2.4.3.sh
