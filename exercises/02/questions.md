@@ -59,15 +59,15 @@ Defined in the module source c file.
 ## 8. What is the path for the `sysfs` entry for the module? List and explain its contents.
 /sys/module/hello.  
 Contains:
-- coresize:
+- coresize : size of loaded kernel module
 - holders
 - initsize
 - initstate
-- notes
+- notes : general notes and information
 - parameters : contains defined module_param variables
-- refcnt
-- sections
-- srcversion
+- refcnt : If the module is able to be unloaded from the kernel, this file will contain the current reference count of the module.
+- sections : This subdirectories contains files with information about module sections. This information is mainly used                 for debugging
+- srcversion : Version number
 - taint : GPL licence avoids taining the kernel
 - uevent : 
 - version : Version module meta data
