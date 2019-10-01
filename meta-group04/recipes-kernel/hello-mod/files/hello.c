@@ -17,17 +17,28 @@
  *
  *****************************************************************************/
 
-#include <linux/module.h>
+#include <linux/kernel.h>
+#include <linux/module.h> 
+#include <linux/moduleparam.h> 
 
+static char *Load = "Hello World";
+module_param(Load,charp,0660);
+static char *Unload = "Goodbye cruel World";
+module_param(Unload,charp,0660);
 int init_module(void)
 {
-	printk("Hello World!\n");
+	printk("%s\n", Load);
 	return 0;
 }
 
 void cleanup_module(void)
 {
-	printk("Goodbye Cruel World!\n");
+	printk("%s\n", Unload);
 }
 
 MODULE_LICENSE("GPL");
+MODULE_DESCRIPTION("This is Hello World Kernel Module for the Real-time systems course");
+MODULE_AUTHOR("Nicolas Trimborn");
+MODULE_AUTHOR("Tarun Reddy");
+MODULE_AUTHOR("Emmanuel Aidoo");
+MODULE_VERSION("1.0");
