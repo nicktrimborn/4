@@ -4,6 +4,7 @@
 - to create a new yocto layer contining a helloworld recipe that is built into a Loadable kernel module LKM 
 - This appended to the core-image-minimal image using the OpenEmbedded build system
 - The hello world LKM can be loaded and unloaded from the Linux with modprob command and customised to accept parameters and includes meta data about the module
+
 ## 2. What is a Yocto layer? What are the essential requirements to correctly define a new one?
 Yocto layer is a logical collection of metadata in the form of recipies.
 It requires:
@@ -31,8 +32,8 @@ It requires:
     - changes to LKM dont require rebuilding of base kernel
     - faster to maintain and debug as they dont prevent booting and crashes can be tracked to LKM
 
-- Alternative: add functionality into the base-kernel and recompile
- 
+- Alternative: add functionality into the base-kernel and recompile.
+
 ## 5. What does Out-of-Tree Module mean? What's the alternative and what are the differences?
 An Out-of-Tree Module is:
 - Not Part of the "main line" kernel 
@@ -40,7 +41,8 @@ Alternative: In-Tree-Module
 Differences: 
 - In-Tree are reviewed and maintained with each official mainline kernel release
 - Out-of-tree module may not be tested on each mainline kernel release and may only support certain versions
-- If Out-of-tree module cannot be incorporate and become in-tree it remains the developers responsibility to maintain and         support it 
+- If Out-of-tree module cannot be incorporate and become in-tree it remains the developers responsibility to maintain and support it.
+
 ## 6. How did you define the module metadata? How does it work?
 Defined in the module source c file.  linux/modules.h defines macros that provide information on the module.  Not used by the kernel itself
 
@@ -53,18 +55,22 @@ Defined in the module source c file.  linux/modules.h defines macros that provid
 - Bitbake then builds and appends the new recipe to core-image-minimal
 
 ## 8. What is the path for the `sysfs` entry for the module? List and explain its contents.
-/sys/module/hello.  Contains:
-coresize:
-holders
-initsize
-initstate
-notes
-parameters : contains defined module_param variables
-refcnt
-sections
-srcversion
-taint
-uevent
-version : Version module meta data
+The path for the sysfs is:
+- /sys/module/hello.  
+
+It contains:
+- coresize
+- holders
+- initsize
+- initstate : Defines the initial state of the LKM
+- notes 
+- parameters : contains defined module_param variables
+- refcnt
+- sections
+- srcversion
+- taint
+- uevent
+- version : Version module meta data
+
 ## 9. Feedback (what was difficult? what was easy? how would you improve it?)
-was a little difficult as info was hard to find,  help from course assistants required
+Was a little difficult as info was hard to find,  help from course assistants required
