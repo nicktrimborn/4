@@ -13,17 +13,34 @@ It requires:
 - Folder containing recipies
     - this folder the recipe .bb file
     - a folder containing source files and make file
-    - core-image-minimal.bbappend file in this case where Metadata of hello world layer is appended to another recipe ie.        core-image-minimal to make it acceble when booting the core image
+    - core-image-minimal.bbappend file in this case where Metadata of hello layer is appended to another recipe ie.              core-image-minimal to make it acceble when booting the core image
 - README File
 - A licent File
 
 ## 3. What priority did you assign to your layer? How and why?
-    Priority 6
+- Default Priority 6 assingned in the conf/layer.conf file
+- Priorities is useful in situations where there are recipe files with the same name in multiple layers
+- No other reciepe should exist with this name as it is an example but 6 is chosen as it is relatively high and will         ensure it get precedence
 
 ## 4. What does LKM stand for (in the context of this exercise)? What does it mean and what are the characteristics of a LKM? What's the alternative?
-    Linux kernel module - is a mechanism for adding code to, or removing code from, the Linux kernel at run time.
-## 5. What does Out-of-Tree Module mean? What's the alternative and what are the differences?
+- LKM = Loadable kernel module
+- LKM a an object file that contains code to extend the running the Linux kernel(run time).
+- Characteristics
+    - Can be loaded and unloaded at runtime
+    - when loaded are part of kernel
+    - changes to LKM dont require rebuilding of base kernel
+    - faster to maintain and debug as they dont prevent booting and crashes can be tracked to LKM
 
+- Alternative: add functionality into the base-kernel and recompile
+ 
+## 5. What does Out-of-Tree Module mean? What's the alternative and what are the differences?
+An Out-of-Tree Module is:
+- Not Part of the "main line" kernel 
+Alternative: In-Tree-Module
+Differences: 
+- In-Tree are reviewed and maintained with each official mainline kernel release
+- Out-of-tree module may not be tested on each mainline kernel release and may only support certain versions
+- If Out-of-tree module cannot be incorporate and become in-tree it remains the developers responsibility to maintain and         support it 
 ## 6. How did you define the module metadata? How does it work?
 Defined in the module source c file.  linux/modules.h defines macros that provide information on the module.  Not used by the kernel itself
 
