@@ -52,7 +52,7 @@ Defined in the module source c file.
 ## 7. How is the module built? How does it get installed inside `core-image-minimal`?
 - The defined a new layer containing a recipes .bb file for the LKM and a corresponding source and make file used to build the LKM
 - The layer also contains a  core-image-minimal.bbappend file which instructs the build system to append the recipe to the core-image-minimal recipe
-- When the build system process the bblayers.conf and local.conf files it knows how to build core-image-minimal and LKM appended to the core-image-recipe  
+- When the build system process the bblayers.conf and local.conf files it knows how to build core-image-minimal and LKM recipe appended to the core-image-recipe  
 - The built LKM object ends up in lib/xilinnx_something/modules/extras/hello.ko directory
 - Modprobe is then able to load and unload the LKM
 
