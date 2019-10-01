@@ -1,12 +1,21 @@
 # TIE-50307 - Exercise 02 - Q&A
 
 ## 1. What is the goal of this exercise? What did you accomplish?
-    to create a new yocto layer and create a hello world recipe
+- to create a new yocto layer contining a helloworld recipe that is built into a Loadable kernel module LKM 
+- This appended to the core-image-minimal image using the OpenEmbedded build system
+- The hello world LKM can be loaded and unloaded from the Linux with modprob command and customised to accept parameters and includes meta data about the module
 ## 2. What is a Yocto layer? What are the essential requirements to correctly define a new one?
-    Yocto layer is a meta packages that contains recipies for the kernel
-    It requires:
-    -conf/layer.conf file 
-    -README File
+Yocto layer is a logical collection of metadata in the form of recipies.
+It requires:
+- An appropriatly named folder, usually with the "meta-" prefix
+- Inside this a directory with conf/layer.conf file defining layer recipies paths, priority etc
+- An entry in the /build/conf/bblayers.conf with the layer path
+- Folder containing recipies
+    - this folder the recipe .bb file
+    - a folder containing source files and make file
+    - core-image-minimal.bbappend file in this case where Metadata of hello world layer is appended to another recipe ie.        core-image-minimal to make it acceble when booting the core image
+- README File
+- A licent File
 
 ## 3. What priority did you assign to your layer? How and why?
     Priority 6
