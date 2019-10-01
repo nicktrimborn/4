@@ -61,8 +61,8 @@ Defined in the module source c file.
 Contains:
 - coresize : size of loaded kernel module
 - holders
-- initsize
-- initstate
+- initsize : part of init-tools 
+- initstate : part of init-tools 
 - notes : general notes and information
 - parameters : contains defined module_param variables
 - refcnt : If the module is able to be unloaded from the kernel, this file will contain the current reference count of the module.
