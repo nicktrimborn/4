@@ -5,7 +5,7 @@
 #include <linux/device.h>           // sysfs functions
 
 #define SYSFS_FILE_ATTR_NAME "evil"
-
+#define PAGE_SIZE 4096
 #define STORAGE_SIZE PAGE_SIZE // DON'T CHANGE IN FINAL REVISION
 #define INPUT_BUFSIZE 1000     // DON'T CHANGE IN FINAL REVISION
 
@@ -18,8 +18,7 @@ int32_t bytes_stored = 0;
 // A standalone kobject for a sysfs entry
 static struct kobject* evil_kobj = NULL;
 
-static void do_tasklet(unsigned long data)
-{
+static void do_tasklet(unsigned long data) {
     int32_t retval;
 
     if(bytes_stored+strlen((char *)data) >= STORAGE_SIZE-1) {
@@ -146,4 +145,7 @@ module_exit(evil_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("The evil kernel module for the Real-time systems course");
 MODULE_AUTHOR("Jan Lipponen <jan.lipponen@wapice.com>");
+MODULE_AUTHOR("Nicolas Trimborn");
+MODULE_AUTHOR("Tarun Reddy");
+MODULE_AUTHOR("Emannuel Aidoo");
 MODULE_VERSION("1.0");
