@@ -5,7 +5,6 @@
 #include <linux/device.h>           // sysfs functions
 
 #define SYSFS_FILE_ATTR_NAME "evil"
-#define PAGE_SIZE 4096
 #define STORAGE_SIZE PAGE_SIZE // DON'T CHANGE IN FINAL REVISION
 #define INPUT_BUFSIZE 1000     // DON'T CHANGE IN FINAL REVISION
 
@@ -15,6 +14,7 @@ char input_buf[INPUT_BUFSIZE];
 
 struct tasklet_struct* tasklet = NULL;
 int32_t bytes_stored = 0;
+
 // A standalone kobject for a sysfs entry
 static struct kobject* evil_kobj = NULL;
 
@@ -54,19 +54,25 @@ static ssize_t store_evil(struct device *dev, struct device_attribute *attr, con
 static ssize_t show_evil(struct device *dev, struct device_attribute *attr, char *buf) {
     uint32_t bytes = 0;
     int32_t retval;
-
+    
+    //printk("Data_storage: KERN_WARNING  %c\n", data_storage[bytes]);
+    //printk("Data_storage: KERN_WARNING  %c\n", data_storage[bytes+1]);
     // Go through the data storage and write all found strings to the output buffer
     while(1) {
-        retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
-        if(retval == 0) {
+        if(data_storage[bytes] == NULL) {
             break;
+        } else {
+            retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
+            printk(retval);
+            if(retval == 0) {
+                break;
+            }
+            //Null-character excluded from the sprintf return value so 1 should be added
+            bytes += retval+1;
         }
-        // Null-character excluded from the sprintf return value so 1 should be added
-        bytes += retval+1;
     }
 
     printk("MUAHAHAHA\n");
-
     return bytes;
 }
 
@@ -76,7 +82,8 @@ static ssize_t show_evil(struct device *dev, struct device_attribute *attr, char
 static struct device_attribute dev_attr_evil = {
     .attr = {
         .name = SYSFS_FILE_ATTR_NAME,
-        .mode = S_IRUGO,
+        //.mode = S_IRUGO,
+        .mode = 644, // *** modify permission to include write access
     },
     .show = show_evil,
     .store = store_evil,
@@ -99,6 +106,7 @@ static int32_t __init evil_init(void)
 
     // Create a sysfs directory entry under /sys/kernel/
     evil_kobj = kobject_create_and_add("evil_module", kernel_kobj);
+    
     if(evil_kobj == NULL) {
         printk(KERN_ERR "EVIL: kobject_create_and_add failed\n");
         retval = -EINVAL;
@@ -114,6 +122,13 @@ static int32_t __init evil_init(void)
     }
 
     // Initialize the tasklet
+    // Memory allocation for tasklet was missing
+    tasklet = kmalloc(sizeof(struct tasklet_struct),GFP_KERNEL);
+    if(tasklet == NULL) {
+        printk(KERN_ERR "EVIL: tasklet memory allocation failed\n");
+        retval = -ENOMEM;
+        goto error_alloc_data_storage;
+    }
     tasklet_init(tasklet, do_tasklet, (unsigned long)input_buf);
 
     return 0;
@@ -135,7 +150,7 @@ static void __exit evil_exit(void)
     kobject_del(evil_kobj);
     sysfs_remove_file(evil_kobj, &dev_attr_evil.attr);
     kfree(data_storage);
-
+    kfree(tasklet);
     printk(KERN_INFO "EVIL: MUAHAHAHA\n");
 }
 

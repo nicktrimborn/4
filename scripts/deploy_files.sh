@@ -1,5 +1,5 @@
 #!/bin/sh
-cd /media/student/62E7-CD76
+cd /media/student/056C-3FA9
 #rm -R .
 cp -L ~/4/build/tmp/deploy/images/pynq/boot.bin .
 cp -L ~/4/build/tmp/deploy/images/pynq/uImage .
