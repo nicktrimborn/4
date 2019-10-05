@@ -37,6 +37,7 @@ static void do_tasklet(unsigned long data) {
         bytes_stored += retval+1;
         printk(KERN_INFO "EVIL: bytes stored: %d\n", bytes_stored);
     }
+    printk("dataStorage Size3 = %d\n", sizeof(data_storage));
 }
 
 // The sysfs attribute invoked when writing
@@ -53,27 +54,39 @@ static ssize_t store_evil(struct device *dev, struct device_attribute *attr, con
 // The sysfs attribute invoked when reading from the file
 static ssize_t show_evil(struct device *dev, struct device_attribute *attr, char *buf) {
     uint32_t bytes = 0;
-    int32_t retval;
+    int32_t retval = 0;
+    int32_t loopcount = 0;
     
-    //printk("Data_storage: KERN_WARNING  %c\n", data_storage[bytes]);
-    //printk("Data_storage: KERN_WARNING  %c\n", data_storage[bytes+1]);
+    printk("dataStorage Size = %d\n", sizeof(&data_storage));
+    printk("dataStorage Size2 = %d\n", sizeof(data_storage));
     // Go through the data storage and write all found strings to the output buffer
-    while(1) {
-        if(data_storage[bytes] == NULL) {
+    while(bytes <= STORAGE_SIZE) {
+        printk("loopcount = %d\n", loopcount++);
+        if(data_storage[bytes] == NULL)
+        {
+            printk("Data empty\n");
             break;
-        } else {
-            retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
-            printk(retval);
-            if(retval == 0) {
-                break;
-            }
-            //Null-character excluded from the sprintf return value so 1 should be added
-            bytes += retval+1;
         }
+        retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
+        //printk("retval = %d\n", retval);
+       
+        if(retval < 0) {
+            printk("sprintf Error\n");
+            break;
+        }
+        
+        if(retval == 0) {
+            printk("retV = 0");
+            break;
+        }
+        
+        // Null-character excluded from the sprintf return value so 1 should be added
+        bytes += retval+1;
     }
 
-    printk("MUAHAHAHA\n");
-    return bytes;
+    //printk("MUAHAHAHA\n");
+    printk("Bytes= %d\n", bytes);
+    return bytes;    
 }
 
 //
