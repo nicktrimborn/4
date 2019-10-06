@@ -19,16 +19,22 @@ int32_t bytes_stored = 0;
 static struct kobject* evil_kobj = NULL;
 
 static void do_tasklet(unsigned long data) {
-    int32_t retval;
-
+    int32_t retval = 0;
+    bytes_stored = 0;  
+    
+    printk("Bytes in data_storage= %d\n", strlen(data_storage));
+    if(strlen(data_storage) > 0) {
+        bytes_stored = strlen(data_storage)+1;
+    }
+    printk("bytes_stored= %d\n", bytes_stored);
+    
     if(bytes_stored+strlen((char *)data) >= STORAGE_SIZE-1) {
         printk(KERN_INFO "EVIL: storage full\n");
         return;
     }
-
+    
     // Replace 'a's with ' ' in the name of evilness
     strreplace((char *)data, 'a', ' ');
-
     retval = sprintf(&data_storage[bytes_stored], "%s", (char *)data);
     if(retval < 0) {
         printk(KERN_ERR "EVIL: sprintf failed\n");
@@ -37,7 +43,7 @@ static void do_tasklet(unsigned long data) {
         bytes_stored += retval+1;
         printk(KERN_INFO "EVIL: bytes stored: %d\n", bytes_stored);
     }
-    printk("dataStorage Size3 = %d\n", sizeof(data_storage));
+    //memset(&input_buf[0], 0, sizeof(input_buf));
 }
 
 // The sysfs attribute invoked when writing
@@ -47,28 +53,42 @@ static ssize_t store_evil(struct device *dev, struct device_attribute *attr, con
 
     // Run a tasklet to perform string manipulation and storing the data
     tasklet_schedule(tasklet);
-
-    return count;
+    printk("Count Value= %zu\n", count);
+    return count;    
 }
 
 // The sysfs attribute invoked when reading from the file
 static ssize_t show_evil(struct device *dev, struct device_attribute *attr, char *buf) {
     uint32_t bytes = 0;
     int32_t retval = 0;
-    int32_t loopcount = 0;
     
-    printk("dataStorage Size = %d\n", sizeof(&data_storage));
-    printk("dataStorage Size2 = %d\n", sizeof(data_storage));
+    
+    //printk("Bytes in datastorage= %d\n", strlen(data_storage)+1);
+    //Check data storage is not empty
+    //if(strlen(data_storage) > 0) {
+        //retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
+      //  retval += sprintf(buf, "%s", data_storage);
+     //   if(retval < 0) {
+          //  printk("EVIL: sprintf failed2\n");
+     //   } 
+      // Null-character excluded from the sprintf return value so 1 should be added
+     //   bytes += retval+1;
+   // }
+        
+    
+    //int32_t loopcount = 0; 
+    //printk("dataStorage Size = %d\n", sizeof(&data_storage));
+    //printk("dataStorage Size2 = %d\n", sizeof(data_storage));
     // Go through the data storage and write all found strings to the output buffer
     while(bytes <= STORAGE_SIZE) {
-        printk("loopcount = %d\n", loopcount++);
+        //printk("loopcount = %d\n", loopcount++);
         if(data_storage[bytes] == NULL)
         {
             printk("Data empty\n");
             break;
         }
         retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
-        //printk("retval = %d\n", retval);
+        printk("retval = %d\n", retval);
        
         if(retval < 0) {
             printk("sprintf Error\n");
@@ -76,18 +96,19 @@ static ssize_t show_evil(struct device *dev, struct device_attribute *attr, char
         }
         
         if(retval == 0) {
-            printk("retV = 0");
+           printk("retV = 0");
             break;
         }
         
         // Null-character excluded from the sprintf return value so 1 should be added
         bytes += retval+1;
-    }
+   }
 
     //printk("MUAHAHAHA\n");
-    printk("Bytes= %d\n", bytes);
+    printk("Bytes Read into Buff= %d\n", bytes);
     return bytes;    
 }
+
 
 //
 //                     Kobject attributes declaration
