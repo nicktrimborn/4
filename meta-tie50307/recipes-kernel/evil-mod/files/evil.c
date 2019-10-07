@@ -20,21 +20,15 @@ static struct kobject* evil_kobj = NULL;
 
 static void do_tasklet(unsigned long data) {
     int32_t retval = 0;
-    bytes_stored = 0;  
-    
-    printk("Bytes in data_storage= %d\n", strlen(data_storage));
-    if(strlen(data_storage) > 0) {
-        bytes_stored = strlen(data_storage)+1;
-    }
-    printk("bytes_stored= %d\n", bytes_stored);
-    
+   
     if(bytes_stored+strlen((char *)data) >= STORAGE_SIZE-1) {
         printk(KERN_INFO "EVIL: storage full\n");
         return;
     }
-    
+
     // Replace 'a's with ' ' in the name of evilness
     strreplace((char *)data, 'a', ' ');
+
     retval = sprintf(&data_storage[bytes_stored], "%s", (char *)data);
     if(retval < 0) {
         printk(KERN_ERR "EVIL: sprintf failed\n");
@@ -43,17 +37,24 @@ static void do_tasklet(unsigned long data) {
         bytes_stored += retval+1;
         printk(KERN_INFO "EVIL: bytes stored: %d\n", bytes_stored);
     }
-    //memset(&input_buf[0], 0, sizeof(input_buf));
+    
+    // Clear input buffer contents
+    memset(&input_buf[0], 0, INPUT_BUFSIZE);
 }
 
 // The sysfs attribute invoked when writing
 static ssize_t store_evil(struct device *dev, struct device_attribute *attr, const char *buf, size_t count) {
-    // Read the user parameters
+    
+    //check input buffer length
+    if(strlen(buf) >= INPUT_BUFSIZE) {
+        printk(KERN_INFO "EVIL: Input Buffer Will Overflow\n");
+        return -1;
+    }
+            
+        // Read the user parameters
     sprintf(input_buf, "%s", buf);
-
     // Run a tasklet to perform string manipulation and storing the data
     tasklet_schedule(tasklet);
-    printk("Count Value= %zu\n", count);
     return count;    
 }
 
@@ -62,50 +63,16 @@ static ssize_t show_evil(struct device *dev, struct device_attribute *attr, char
     uint32_t bytes = 0;
     int32_t retval = 0;
     
-    
-    //printk("Bytes in datastorage= %d\n", strlen(data_storage)+1);
-    //Check data storage is not empty
-    //if(strlen(data_storage) > 0) {
-        //retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
-      //  retval += sprintf(buf, "%s", data_storage);
-     //   if(retval < 0) {
-          //  printk("EVIL: sprintf failed2\n");
-     //   } 
-      // Null-character excluded from the sprintf return value so 1 should be added
-     //   bytes += retval+1;
-   // }
-        
-    
-    //int32_t loopcount = 0; 
-    //printk("dataStorage Size = %d\n", sizeof(&data_storage));
-    //printk("dataStorage Size2 = %d\n", sizeof(data_storage));
-    // Go through the data storage and write all found strings to the output buffer
-    while(bytes <= STORAGE_SIZE) {
-        //printk("loopcount = %d\n", loopcount++);
-        if(data_storage[bytes] == NULL)
-        {
-            printk("Data empty\n");
-            break;
-        }
-        retval += sprintf(&buf[bytes], "%s", &data_storage[bytes]);
-        printk("retval = %d\n", retval);
-       
-        if(retval < 0) {
-            printk("sprintf Error\n");
-            break;
-        }
-        
+    while(1) {
+        retval = sprintf(&buf[bytes], "%s", &data_storage[bytes]);        
         if(retval == 0) {
-           printk("retV = 0");
             break;
         }
         
         // Null-character excluded from the sprintf return value so 1 should be added
         bytes += retval+1;
    }
-
     //printk("MUAHAHAHA\n");
-    printk("Bytes Read into Buff= %d\n", bytes);
     return bytes;    
 }
 
@@ -137,6 +104,9 @@ static int32_t __init evil_init(void)
         retval = -ENOMEM;
         goto error_alloc_data_storage;
     }
+    //Initialise allocate memory to 0
+    memset(data_storage, 0, STORAGE_SIZE);
+    memset(&input_buf[0], 0, INPUT_BUFSIZE);
 
     // Create a sysfs directory entry under /sys/kernel/
     evil_kobj = kobject_create_and_add("evil_module", kernel_kobj);
@@ -163,8 +133,8 @@ static int32_t __init evil_init(void)
         retval = -ENOMEM;
         goto error_alloc_data_storage;
     }
+    
     tasklet_init(tasklet, do_tasklet, (unsigned long)input_buf);
-
     return 0;
 
  error_sysfs_create:
@@ -179,13 +149,13 @@ static int32_t __init evil_init(void)
 // The kernel module exit function
 static void __exit evil_exit(void)
 {
-    kfree(tasklet);
+    //kill tasklet before free
     tasklet_kill(tasklet);
+    kfree(tasklet);
     kobject_del(evil_kobj);
     sysfs_remove_file(evil_kobj, &dev_attr_evil.attr);
     kfree(data_storage);
-    kfree(tasklet);
-    printk(KERN_INFO "EVIL: MUAHAHAHA\n");
+    //printk(KERN_INFO "EVIL: MUAHAHAHA\n");
 }
 
 module_init(evil_init);
