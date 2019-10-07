@@ -18,6 +18,11 @@
 
 
 ## 4. How many buffers does the `evil` LKM use? List their names, their size and their purpose. How is their memory allocated?
+- evil has 2 buffers
+- Input Buffer:
+    - static assigned char array of size 1000 (char = 1 byte)
+    - buffers input to tasklet which stores data to data_storage
+- 
 
 ## 5. How are user-input strings stored inside the module? How does the module iterate over this list? What's the loop end condition?
 
