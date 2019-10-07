@@ -42,11 +42,18 @@
 
 ## 7. What bugs did you find/fix? Categorize them and briefly describe each matching *category* (what's the *impact* of each *category*? How common do you *think* it is?)
 Bugs:\
-Memory allocation\
-    1) no memory allocated for tasklet - Serious: Segfault | uncommon: would cause segfault during development
+
 Memory Management\
-    1) evil_exit() tries to free tasklet memory before executing tasklet_kill - Serious: can cause kernel panic | common: easy mistake to make
-    2) 
+    1) no memory allocated for tasklet - Serious: Segfault | uncommon: would cause segfault during development\
+    2) evil_exit() tries to free tasklet memory before executing tasklet_kill - Serious: can cause kernel panic | common: easy mistake to make\
+    3) evil_init() depending on errors, not all memory is free'd such as kfree(data_storage)
+kobject_del(evil_kobj) - Mild: Memory leaks | common: easy mistake to forget to free allocated memory
+    4) allocated , data_storage and input_buf should be initialised to 0 to avoid undefined behaviour with memset Mild: Memory leaks | common: easy mistake to make when allocating memory
+Buffer handling\
+    1) in show_evil() += used instead of = for sprintf return value  Serious: non functional code | uncommon: would cause errors during development
+    2) store_evil() function needs to check for buffer overflow of input_buf when storing user-input strings and return an error (-1) when overflow would occur - Serious: Segfault | common: would cause segfault only in overflow cases\
+Permissions\
+    1) sysfs dev_attr_evil needs to be set to allow for r/w access (644 used) Serious: permmission denied | uncommon: would cause permission errors during development\
 
 
 ## 8. What are out-of-bounds accesses and stack overflows? Are they relevant for this exercise? What could be the consequences of such defects in a LKM?
