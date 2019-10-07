@@ -104,7 +104,7 @@ static int32_t __init evil_init(void)
         retval = -ENOMEM;
         goto error_alloc_data_storage;
     }
-    //Initialise allocate memory to 0
+    //Initialise buffer memory to 0
     memset(data_storage, 0, STORAGE_SIZE);
     memset(&input_buf[0], 0, INPUT_BUFSIZE);
 
