@@ -131,17 +131,25 @@ static int32_t __init evil_init(void)
     if(tasklet == NULL) {
         printk(KERN_ERR "EVIL: tasklet memory allocation failed\n");
         retval = -ENOMEM;
-        goto error_alloc_data_storage;
+        goto error_alloc_tasklet;
     }
     
     tasklet_init(tasklet, do_tasklet, (unsigned long)input_buf);
     return 0;
 
  error_sysfs_create:
+    kfree(data_storage);
     kobject_del(evil_kobj);
  error_kobject_create:
     kfree(data_storage);
+    kobject_del(evil_kobj);
  error_alloc_data_storage:
+    kfree(data_storage);
+error_alloc_tasklet:
+    kfree(data_storage);
+    kobject_del(evil_kobj);
+    kfree(tasklet);
+    
     printk(KERN_ERR "EVIL: error occurred while evil init!\n");
     return retval;
 }
