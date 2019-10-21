@@ -19,4 +19,12 @@
 /build/tmp/sysroots-components
 /build/tmp/sysroots-uninative
 /build/tmp/work
-/build/tmp/work-shared
+/build/tmp/work-shared	
+exercises/01/README.md
+exercises/02/README.md
+exercises/03/README.md
+exercises/04/
+meta-tie50307/recipes-kernel/irqgen-ex4-mod/
+scripts/update_from_course_upstream.sh
+update_from_course_upstream.sh
+
