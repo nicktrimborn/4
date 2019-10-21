@@ -19,13 +19,13 @@
 /* --- bitfield defines for HW registers' fields --- */
 # include <linux/bitfield.h>         // bitfield macros for writing the HW registers
 
-# define IRQGEN_CTRL_REG_F_ENABLE             BIT(0) // FIXME: check in the reference documentation
-# define IRQGEN_CTRL_REG_F_HANDLED            BIT(0) // FIXME: check in the reference documentation
-# define IRQGEN_CTRL_REG_F_ACK        GENMASK( 1, 0) // FIXME: check in the reference documentation
+# define IRQGEN_CTRL_REG_F_ENABLE             BIT(0) // Done: FIXME: check in the reference documentation
+# define IRQGEN_CTRL_REG_F_HANDLED            BIT(1) // Done: FIXME: check in the reference documentation
+# define IRQGEN_CTRL_REG_F_ACK        GENMASK( 5, 2) // Done: FIXME: check in the reference documentation
 
-# define IRQGEN_GENIRQ_REG_F_LINE     GENMASK( 1, 0) // FIXME: check in the reference documentation
-# define IRQGEN_GENIRQ_REG_F_DELAY    GENMASK( 1, 0) // FIXME: check in the reference documentation
-# define IRQGEN_GENIRQ_REG_F_AMOUNT   GENMASK( 1, 0) // FIXME: check in the reference documentation
+# define IRQGEN_GENIRQ_REG_F_LINE     GENMASK( 3, 0) // Done: FIXME: check in the reference documentation
+# define IRQGEN_GENIRQ_REG_F_DELAY    GENMASK( 19, 6) // Done: FIXME: check in the reference documentation
+# define IRQGEN_GENIRQ_REG_F_AMOUNT   GENMASK( 31, 20) // Done: FIXME: check in the reference documentation
 
 # define IRQGEN_MAX_LINE   (FIELD_GET(IRQGEN_GENIRQ_REG_F_LINE  , 0xFFFFFFFFL))
 # define IRQGEN_MAX_DELAY  (FIELD_GET(IRQGEN_GENIRQ_REG_F_DELAY , 0xFFFFFFFFL))
