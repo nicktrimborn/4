@@ -2,14 +2,14 @@
 #define __IRQGEN_ADDRESSES_H
 
 /* IRQ Generator core register address space from devicetree.dts */
-# define IRQGEN_REG_PHYS_BASE 0x0 // FIXME: find the right address for the register from the device tree
-# define IRQGEN_REG_PHYS_SIZE 0x0 // FIXME: find the size of the register address space from the device tree
+# define IRQGEN_REG_PHYS_BASE 0x43c00000 // FIXME: find the right address for the register from the device tree
+# define IRQGEN_REG_PHYS_SIZE 0x10000 // FIXME: find the size of the register address space from the device tree
 
 /* IRQ Generator register address map from irq_generator_v1_1.pdf */
 # define IRQGEN_CTRL_REG_OFFSET 0x0000 // FIXME: check in the reference documentation
-# define IRQGEN_GENIRQ_REG_OFFSET 0x0000 // FIXME: check in the reference documentation
-# define IRQGEN_IRQ_COUNT_REG_OFFSET 0x0000 // FIXME: check in the reference documentation
-# define IRQGEN_LATENCY_REG_OFFSET 0x0000 // FIXME: check in the reference documentation
+# define IRQGEN_GENIRQ_REG_OFFSET 0x0004 // FIXME: check in the reference documentation
+# define IRQGEN_IRQ_COUNT_REG_OFFSET 0x0008 // FIXME: check in the reference documentation
+# define IRQGEN_LATENCY_REG_OFFSET 0x000C // FIXME: check in the reference documentation
 
 # define IRQGEN_CTRL_REG      (irqgen_reg_base + IRQGEN_CTRL_REG_OFFSET)
 # define IRQGEN_GENIRQ_REG    (irqgen_reg_base + IRQGEN_GENIRQ_REG_OFFSET)

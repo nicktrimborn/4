@@ -164,7 +164,10 @@ static int32_t __init irqgen_init(void)
     }
 
     /* TODO: Register the handle to the relevant IRQ number */
-    retval = _request_irq(/* FIXME: fill the first arguments */, &dummy);
+    //irqgen_irqhandler = 
+    //retval = _request_irq(/* FIXME: fill the first arguments */, &dummy);
+    retval = _request_irq(IRQGEN_FIRST_IRQ, NULL, 0.0, NULL, &dummy);
+
     if (retval != 0) {
         printk(KERN_ERR KMSG_PFX "request_irq() failed with return value %d while requesting IRQ id %u.\n",
                 retval, IRQGEN_FIRST_IRQ);
