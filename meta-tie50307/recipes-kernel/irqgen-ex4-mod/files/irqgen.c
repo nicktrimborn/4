@@ -20,7 +20,7 @@
 #include "irqgen.h"                 // Shared module specific declarations
 
 /* Linux IRQ number for the first hwirq line */
-#define IRQGEN_FIRST_IRQ 0 // FIXME: find the right Linux IRQ number for the first hwirq of the device
+#define IRQGEN_FIRST_IRQ 45 //Done: FIXME: find the right Linux IRQ number for the first hwirq of the device
 
 // Kernel token address to access the IRQ Generator core register
 void __iomem *irqgen_reg_base = NULL;
@@ -71,8 +71,14 @@ static irqreturn_t irqgen_irqhandler(int irq, void *data)
     // FIXME: increment the `count_handled` counter before ACK
 
     // HINT: use iowrite32 and the bitfield macroes to modify the register fields
+    irqgen_data->count_handled++;    
+    u32 regvalue = 0
+                   | FIELD_PREP(IRQGEN_CTRL_REG_F_HANDLED, 1)
+                   | FIELD_PREP(IRQGEN_CTRL_REG_F_ACK, 1);
 
-    return IRQ_NONE; // FIXME: what should be returned on completion?
+    iowrite32(regvalue, IRQGEN_CTRL_REG);
+    return IRQ_HANDLED; // Nick
+    // return IRQ_NONE; // FIXME: what should be returned on completion?
 }
 
 /* Enable the IRQ Generator */
@@ -156,7 +162,8 @@ static int32_t __init irqgen_init(void)
     }
 
     /* TODO: Map the IRQ Generator core register with ioremap */
-    irqgen_reg_base = NULL;
+    // irqgen_reg_base = NULL;
+    irqgen_reg_base = ioremap(IRQGEN_REG_PHYS_BASE, IRQGEN_REG_PHYS_SIZE);
     if (NULL == irqgen_reg_base) {
         printk(KERN_ERR KMSG_PFX "ioremap() failed.\n");
         retval = -EFAULT;
@@ -164,9 +171,8 @@ static int32_t __init irqgen_init(void)
     }
 
     /* TODO: Register the handle to the relevant IRQ number */
-    //irqgen_irqhandler = 
     //retval = _request_irq(/* FIXME: fill the first arguments */, &dummy);
-    retval = _request_irq(IRQGEN_FIRST_IRQ, NULL, 0.0, NULL, &dummy);
+    retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_LNAME, &dummy);
 
     if (retval != 0) {
         printk(KERN_ERR KMSG_PFX "request_irq() failed with return value %d while requesting IRQ id %u.\n",
@@ -194,6 +200,7 @@ static int32_t __init irqgen_init(void)
     // FIXME: free the appropriate resource when handling this error step
  err_request_irq:
     // FIXME: free the appropriate resource when handling this error step
+    // free_irq(unsigned int irq, void *dev)  //Nick
  err_ioremap:
     // FIXME: free the appropriate resource when handling this error step
  err_alloc_irqgen_data:
