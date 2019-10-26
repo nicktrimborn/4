@@ -250,4 +250,7 @@ MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Module for the IRQ Generator IP block for the realtime systems course");
 MODULE_AUTHOR("Jan Lipponen <jan.lipponen@wapice.com>");
 MODULE_AUTHOR("Nicola Tuveri <nicola.tuveri@tut.fi>");
+MODULE_AUTHOR("Nicolas Trimborn");
+MODULE_AUTHOR("Tarun Reddy");
+MODULE_AUTHOR("Emannuel Aidoo");
 MODULE_VERSION("0.2");

@@ -8,7 +8,7 @@
  *          Real-Time System course (Bonus task: sysfs support).
  */
 
-// #define BONUS_SYSFS_IS_IMPLEMENTED // FIXME: enable for the bonus exercise
+#define BONUS_SYSFS_IS_IMPLEMENTED // FIXME: enable for the bonus exercise
 #ifndef BONUS_SYSFS_IS_IMPLEMENTED
 
 int irqgen_sysfs_setup(void) { return 0; }
@@ -36,10 +36,17 @@ void irqgen_sysfs_cleanup(void) { return; }
 
 static ssize_t count_handled_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
 {
-    // FIXME: write to buf (as a string) the value stored inside the module data structure
+    uint32_t bytes = 0;
+    
+    bytes = sprintf(buf, "%lu\n", (unsigned long)irqgen_data->count_handled);        
 
-
-
+   ///extra byt for null character
+    if (bytes < 0) {
+        printk(KERN_ERR KMSG_PFX "Failed to print count handled\n");
+        return 0;     
+    }  
+    
+    return (bytes + 1);  
 }
 IRQGEN_ATTR_RO(count_handled);
 
@@ -47,6 +54,16 @@ static ssize_t enabled_show(struct kobject *kobj, struct kobj_attribute *attr, c
 {
     // FIXME: read this value from the field in the CTRL register, print 1 or 0 a string to buf
     // HINT: check linux/bitfield.h to see how to use the bitfield macroes
+
+    uint32_t bytes = 0;
+    int enable_bit = FIELD_GET(IRQGEN_CTRL_REG_F_ENABLE, ioread32(IRQGEN_CTRL_REG));
+       
+    bytes = sprintf(buf, "%d\n", enable_bit); 
+    if (bytes < 0) {
+        printk(KERN_ERR KMSG_PFX "Failed to print enabled Status\n");
+        return 0;     
+    }  
+    return (bytes + 1);  
 }
 static ssize_t enabled_store(struct kobject *kobj, struct kobj_attribute *attr, const char *buf, size_t count)
 {
@@ -68,14 +85,55 @@ static ssize_t delay_store(struct kobject *kobj, struct kobj_attribute *attr, co
 {
     // FIXME: check boundaries, then store the value in delay_store_buf
     // HINT: use kstrtoul()
+    int retval;
+    uint32_t bytes = 0;
+    unsigned int long val;
+
+    retval = kstrtoul(buf, 0, &val);
+
+    if (retval == -ERANGE) {
+        printk(KERN_ERR KMSG_PFX "delay store: out of range\n");
+        return -ERANGE;
+    } else if (retval == -EINVAL) {
+         printk(KERN_ERR KMSG_PFX "delay store: parsing error\n");
+         return -EINVAL;
+    } else if (val >= 16384 ) {
+        printk(KERN_ERR KMSG_PFX "delay store: range error\n");
+        return -ERANGE;
+    }
+
+    // bytes = sprintf(delay_store_buf, "%lu\n", val); 
+    // if (bytes < 0) {
+    //     printk(KERN_ERR KMSG_PFX "Failed to print delay_store\n");
+    //     return 0;     
+    // }  
+    delay_store_buf = val;
+
+    return count;
 }
 static ssize_t amount_store(struct kobject *kobj, struct kobj_attribute *attr, const char *buf, size_t count)
 {
     unsigned long val;
+    int retval;
     // FIXME: save in val, then check boundaries
     // HINT: use kstrtoul()
 
-    do_generate_irqs(val, 0, delay_store_buf);
+    retval = kstrtoul(buf, 0, &val);
+
+    if (retval == -ERANGE) {
+        printk(KERN_ERR KMSG_PFX "amount_store: out of range\n");
+        return -ERANGE;
+    } else if (retval == -EINVAL) {
+        printk(KERN_ERR KMSG_PFX "amount_store: parsing error\n");
+        return -EINVAL;
+    } else if (val < 1 || val > 4095) {
+        printk(KERN_ERR KMSG_PFX "amount_store: range error\n");
+        return -ERANGE;
+    }
+
+    if(val) {
+        do_generate_irqs(val, 0, delay_store_buf);
+    }
     return count;
 }
 IRQGEN_ATTR_WO(delay);
@@ -89,6 +147,9 @@ IRQGEN_ATTR_WO(amount);
 static struct attribute *attrs[] = {
     // FIXME: add entries for `enabled`,`delay`,`amount`
     &IRQGEN_ATTR_GET_NAME(count_handled).attr,
+    &IRQGEN_ATTR_GET_NAME(enabled).attr,
+    &IRQGEN_ATTR_GET_NAME(delay).attr,
+    &IRQGEN_ATTR_GET_NAME(amount).attr,
     NULL,   /* need to NULL terminate the list of attributes */
 };
 
@@ -128,6 +189,7 @@ int irqgen_sysfs_setup(void)
     if (0 != retval) {
         printk(KERN_ERR KMSG_PFX "sysfs_create_group() failed.\n");
         // FIXME: decrease ref count for irqgen_kobj
+        kobject_put(irqgen_kobj);
     }
 
     return retval;
@@ -136,6 +198,9 @@ int irqgen_sysfs_setup(void)
 void irqgen_sysfs_cleanup(void)
 {
     if (irqgen_kobj)
+    {
+        kobject_put(irqgen_kobj);
+    }
         // FIXME: decrease ref count for irqgen_kobj
 }
 
