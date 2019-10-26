@@ -8,7 +8,7 @@
  *          Real-Time System course (Bonus task: sysfs support).
  */
 
-//#define BONUS_SYSFS_IS_IMPLEMENTED // FIXME: enable for the bonus exercise
+// #define BONUS_SYSFS_IS_IMPLEMENTED // FIXME: enable for the bonus exercise
 #ifndef BONUS_SYSFS_IS_IMPLEMENTED
 
 int irqgen_sysfs_setup(void) { return 0; }
@@ -37,6 +37,9 @@ void irqgen_sysfs_cleanup(void) { return; }
 static ssize_t count_handled_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
 {
     // FIXME: write to buf (as a string) the value stored inside the module data structure
+
+
+
 }
 IRQGEN_ATTR_RO(count_handled);
 

@@ -69,12 +69,12 @@ static irqreturn_t irqgen_irqhandler(int irq, void *data)
 #endif
 
     // FIXME: increment the `count_handled` counter before ACK
-
     // HINT: use iowrite32 and the bitfield macroes to modify the register fields
     irqgen_data->count_handled++;    
-    u32 regvalue = 0
-                   | FIELD_PREP(IRQGEN_CTRL_REG_F_HANDLED, 1)
-                   | FIELD_PREP(IRQGEN_CTRL_REG_F_ACK, 1);
+    
+    u32 regvalue = FIELD_PREP(IRQGEN_CTRL_REG_F_HANDLED, 1) 
+                    | FIELD_PREP(IRQGEN_CTRL_REG_F_ENABLE, 1)
+                    | FIELD_PREP(IRQGEN_CTRL_REG_F_ACK, 0);
 
     iowrite32(regvalue, IRQGEN_CTRL_REG);
     return IRQ_HANDLED; // Nick
@@ -87,7 +87,10 @@ void enable_irq_generator(void)
 #ifdef DEBUG
     printk(KERN_INFO KMSG_PFX "Enabling IRQ Generator.\n");
 #endif
-    // HINT: use iowrite32 and the bitfield macroes to modify the register fields
+    // ### Done: HINT: use iowrite32 and the bitfield macroes to modify the register fields
+    u32 regvalue = FIELD_PREP(IRQGEN_CTRL_REG_F_ENABLE, 1);  // Set enable bit
+                       
+    iowrite32(regvalue, IRQGEN_CTRL_REG);
 }
 
 /* Disable the IRQ Generator */
@@ -96,8 +99,15 @@ void disable_irq_generator(void)
 #ifdef DEBUG
     printk(KERN_INFO KMSG_PFX "Disabling IRQ Generator.\n");
 #endif
-    // FIXME: set to zero the `amount` field, then disable the controller
+    // ### Done:FIXME: set to zero the `amount` field, then disable the controller
     // HINT: use iowrite32 and the bitfield macroes to modify the register fields
+
+    /* Set Amount field to 0 */              
+    iowrite32(FIELD_PREP(IRQGEN_GENIRQ_REG_F_AMOUNT,  0), IRQGEN_GENIRQ_REG);
+
+    /* Disable IRQ Generataor */
+
+    iowrite32(FIELD_PREP(IRQGEN_CTRL_REG_F_ENABLE, 0), IRQGEN_CTRL_REG);
 }
 
 /* Generate specified amount of interrupts on specified IRQ_F2P line [IRQLINES_AMNT-1:0] */
@@ -124,7 +134,9 @@ u64 irqgen_read_latency(void)
 // Returns the total generated IRQ count from IRQ_GEN_IRQ_COUNT_REG
 u32 irqgen_read_count(void)
 {
-    // FIXME: use ioread32 to read the proper register
+    
+    // ##### Done:FIXME: use ioread32 to read the proper register
+    return ioread32(IRQGEN_IRQ_COUNT_REG);
 }
 
 // Debugging wrapper for request_irq()
@@ -172,7 +184,8 @@ static int32_t __init irqgen_init(void)
 
     /* TODO: Register the handle to the relevant IRQ number */
     //retval = _request_irq(/* FIXME: fill the first arguments */, &dummy);
-    retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_LNAME, &dummy);
+    //retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_LNAME, &dummy);
+    retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_NAME, &dummy);
 
     if (retval != 0) {
         printk(KERN_ERR KMSG_PFX "request_irq() failed with return value %d while requesting IRQ id %u.\n",
@@ -198,12 +211,16 @@ static int32_t __init irqgen_init(void)
 
  err_sysfs_setup:
     // FIXME: free the appropriate resource when handling this error step
+    irqgen_sysfs_cleanup();
  err_request_irq:
     // FIXME: free the appropriate resource when handling this error step
-    // free_irq(unsigned int irq, void *dev)  //Nick
+    //free_irq(unsigned int irq, void *dev);  //Nick
+    free_irq(IRQGEN_FIRST_IRQ, dummy);  //Nick
  err_ioremap:
     // FIXME: free the appropriate resource when handling this error step
+    iounmap(irqgen_reg_base);
  err_alloc_irqgen_data:
+ 
  err_parse_parameters:
     printk(KERN_ERR KMSG_PFX "module initialization failed\n");
     return retval;
