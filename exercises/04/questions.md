@@ -6,11 +6,16 @@
 - Learned about memory address and remaping from physical address of an I/O device to the kernel virtual address usin ioremap
 - Learned how to use linux/bitfield.h macros to manipulate registers with ioread32 and iowrite32 functions
 
-
 ## 2. Summarize the functionality provided by the IRQ Generator IP block, then describe what is the purpose of the various registers exposed by the FPGA device. Finally, ignore the fact that you were instructed to look for the base address of the IRQ Generator register space in the provided `devicetree.dts` and instead imagine you were also the developer of the FPGA core design, where would you have found the base address of the register space?
 - The irq generator block allows for level-sensitive interrupt generation between the PL(Programmable logic, FPGA) and PS (processing system). The PL is connected to the interrupt input lines on the PS which is running the linux OS. 
 - The IP block is controlled by writing to the appropriate registers using the genirq-ex4 kernel module
-- IRQ's recieved by the PS are handled on interupt line assertion when handled are ACK'd. Based on the number of clock edges between assertion and ACK, the interupt latency of the PS can be calculated
+- IRQ's recieved by the PS are handled on interupt line assertion when handled are ACK'd. Based on the number of clock edges between assertion and ACK, the interupt latency of the PS can be calculated\
+-The IP block exposes 4, 32-bit registers:
+    - IRQ_GEN_CTRL_REG - Controls functionality of IP Block. Enable block, IRQ handled bit and acknowledgement of the respective IRQ line that has been asserted
+    - IRQ_GEN_GENIRQ_Reg - Used to set desired IRQ generation parameters such as which line to use, delay between IRQ's generated and the number of IRQ's to generate
+    - IRQ_GEN_IRQ_COUNT_REG - read only register containing count of IRQ's generated
+    - IRQ_GEN_LATENCY_REG - Contains latency of last sucessfully handled IRQ.  Latency is calculated by counting the number of positive clock edges between interrupt line assertion and IRQ handling(handled and ACK) 
+-Base address:
 
 ## 3. Describe the relationship between interrupt lines in the IRQ Generator, HW IRQ and Linux IRQ numbers, and how did you proceed to discover the IRQ number to use in the driver.
 
