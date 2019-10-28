@@ -10,24 +10,28 @@
 - The irq generator block allows for level-sensitive interrupt generation between the PL(Programmable logic, FPGA) and PS (processing system). The PL is connected to the interrupt input lines on the PS which is running the linux OS. 
 - The IP block is controlled by writing to the appropriate registers using the genirq-ex4 kernel module
 - IRQ's recieved by the PS are handled on interupt line assertion when handled are ACK'd. Based on the number of clock edges between assertion and ACK, the interupt latency of the PS can be calculated\
--The IP block exposes 4, 32-bit registers:
+- The IP block exposes 4, 32-bit registers:
     - IRQ_GEN_CTRL_REG - Controls functionality of IP Block. Enable block, IRQ handled bit and acknowledgement of the respective IRQ line that has been asserted
     - IRQ_GEN_GENIRQ_Reg - Used to set desired IRQ generation parameters such as which line to use, delay between IRQ's generated and the number of IRQ's to generate
     - IRQ_GEN_IRQ_COUNT_REG - read only register containing count of IRQ's generated
     - IRQ_GEN_LATENCY_REG - Contains latency of last sucessfully handled IRQ.  Latency is calculated by counting the number of positive clock edges between interrupt line assertion and IRQ handling(handled and ACK) 
--Base address:
+- Base address:
 
 ## 3. Describe the relationship between interrupt lines in the IRQ Generator, HW IRQ and Linux IRQ numbers, and how did you proceed to discover the IRQ number to use in the driver.
 
 ## 4. How many interrupt lines are available in the documented FPGA core (refer to the spec, even if we only used one in the *beta* bitstream we were given)?
+- 16 interrupt lines [0-15] are available
 
 ## 5. What value is reported in the devicetree for the first IRQ line? How is it determined? (check the spec document, it has all the required information to map the line number to the HW IRQ on the processing system)
+- 
 
 ## 6. Using the information detailed in the previous answer, what should be written in the `devicetree.dts` line describing the IRQ Generator interrupts if it were to describe all the 16 HW IRQs? (write the exact line as it would appear in the `devicetree.dts`, notice that the HW IRQs are not contiguous!). Each interrupt line is specified by three cells in the device tree file; what information does each of these three cells represent?
 
 ## 7. Why do we need to use `ioremap`, `ioread32` and `iowrite32`? Why do we want to use the Linux kernel bitfields macroes rather than using bitwise arithmetic directly?
-
+- ioremap: I/O memory regions must be allocated prior to use and must be made avalible to the kernel. Depending on architecture it is nessesary to assign virtual addresses to I/O memory regions. This is what ioremap is used for.
+- ioread32 and iowrite32 are required to work with I/O memory in a platform portable way
+- bitfield macros simply the task of performing the required bitwise arithmetic in a platform independent way (big endian/little endian etc).   
 ## 8. (BONUS, optional) Did you find any bug in the bitstream implementation while testing the sysfs interface?
 
 ## 9. Feedback (what was difficult? what was easy? how would you improve it?)
-
+- Not to difficult,  could not find much documentation on use of bitfield.h macros
