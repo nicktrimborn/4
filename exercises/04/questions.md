@@ -23,7 +23,11 @@
 - 16 interrupt lines [0-15] are available
 
 ## 5. What value is reported in the devicetree for the first IRQ line? How is it determined? (check the spec document, it has all the required information to map the line number to the HW IRQ on the processing system)
-- 
+- interrupts = <0x0 0x1d 0x4>;
+- 3 cells used to specify the interupt.  
+    - 0x0: interrupt type = Shared peripheral interupt
+    - 0x1d: interrupt Number
+    - 0x4: interrupt signal type = Active high level-sensitive
 
 ## 6. Using the information detailed in the previous answer, what should be written in the `devicetree.dts` line describing the IRQ Generator interrupts if it were to describe all the 16 HW IRQs? (write the exact line as it would appear in the `devicetree.dts`, notice that the HW IRQs are not contiguous!). Each interrupt line is specified by three cells in the device tree file; what information does each of these three cells represent?
 
