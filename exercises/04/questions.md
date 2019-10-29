@@ -53,6 +53,6 @@
 - ioread32 and iowrite32 are required to work with I/O memory in a platform portable way
 - bitfield macros simply the task of performing the required bitwise arithmetic in a platform independent way (big endian/little endian etc).   
 ## 8. (BONUS, optional) Did you find any bug in the bitstream implementation while testing the sysfs interface?
-
+     - the delay is write only,should be possible to show set delay
 ## 9. Feedback (what was difficult? what was easy? how would you improve it?)
 - Not to difficult,  could not find much documentation on use of bitfield.h macros
