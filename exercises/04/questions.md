@@ -16,6 +16,7 @@
     - IRQ_GEN_IRQ_COUNT_REG - read only register containing count of IRQ's generated
     - IRQ_GEN_LATENCY_REG - Contains latency of last sucessfully handled IRQ.  Latency is calculated by counting the number of positive clock edges between interrupt line assertion and IRQ handling(handled and ACK) 
 - Base address:
+    - The base would need to be found by carefully reviewing the SOC documentation
 
 ## 3. Describe the relationship between interrupt lines in the IRQ Generator, HW IRQ and Linux IRQ numbers, and how did you proceed to discover the IRQ number to use in the driver.
 - The interrupt lines of the IRQ Generator IRQF2P[15:0] are mapped to IRQ IDs 61-68 and 84-91(HW IRQ numbers)
