@@ -25,7 +25,8 @@
     - irq handler should return as quickly as possible and should avoid waits and prints etc    
 
 ## 4. How can you find the base address for the IP block register space in Vivado? Does it match the contents of the devicetree?
-    - base address for the IP block is found in the address editor under the name of the block.  The offset address 0x43C0_0000 matches the register address in the device tree.
+    - base address for the IP block is found in the address editor under the name of the block.  
+    - The offset address 0x43C0_0000 matches the register address in the device tree.
 
 ## 5. Feedback (what was difficult? what was easy? how would you improve it?)
 - for someone who had not used vivado and verilog before, the learning curve was a little steep
