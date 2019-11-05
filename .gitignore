@@ -1,7 +1,8 @@
-/build/bitbake-cookerdaemon.log
-/build/cache
+**/build/bitbake-cookerdaemon.log
+**/build/cache
 !/build/conf
 /build/conf/sanity_info
+**/build/tmp
 /build/downloads
 /build/sstate-cache
 /build/tmp/abi_version
@@ -20,5 +21,9 @@
 /build/tmp/sysroots-uninative
 /build/tmp/work
 /build/tmp/work-shared	
+**/meta-pynq
+**/meta-xilinx
+**/poky
+**/.vscode
 
 
