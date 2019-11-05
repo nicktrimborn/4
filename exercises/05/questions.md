@@ -19,15 +19,13 @@
             * copy the irq_latency_counter_r value to irq_latency_r
             * reset irq_latency_counter_r to 0
 
-
-
 ## 3. How much difference there is in latency between the regular driver build and the debug driver build? Why?
     - There is a large difference ~2-3000ns vs ~2.5ms 
     - debug build makes use of printk in the irqgen_irqhandler which introduces alot of delay
     - irq handler should return as quickly as possible and should avoid waits and prints etc    
 
 ## 4. How can you find the base address for the IP block register space in Vivado? Does it match the contents of the devicetree?
-
+    - base address for the IP block is found in the address editor under the name of the block.  The offset address 0x43C0_0000 matches the register address in the device tree.
 
 ## 5. Feedback (what was difficult? what was easy? how would you improve it?)
 - for someone who had not used vivado and verilog before, the learning curve was a little steep
