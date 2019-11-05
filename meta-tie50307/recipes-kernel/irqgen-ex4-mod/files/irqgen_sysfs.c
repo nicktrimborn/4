@@ -57,7 +57,7 @@ static ssize_t enabled_show(struct kobject *kobj, struct kobj_attribute *attr, c
 
     uint32_t bytes = 0;
     int enable_bit = FIELD_GET(IRQGEN_CTRL_REG_F_ENABLE, ioread32(IRQGEN_CTRL_REG));
-       
+
     bytes = sprintf(buf, "%d\n", enable_bit); 
     if (bytes < 0) {
         printk(KERN_ERR KMSG_PFX "Failed to print enabled Status\n");
@@ -95,8 +95,8 @@ static ssize_t delay_store(struct kobject *kobj, struct kobj_attribute *attr, co
         printk(KERN_ERR KMSG_PFX "delay store: out of range\n");
         return -ERANGE;
     } else if (retval == -EINVAL) {
-         printk(KERN_ERR KMSG_PFX "delay store: parsing error\n");
-         return -EINVAL;
+        printk(KERN_ERR KMSG_PFX "delay store: parsing error\n");
+        return -EINVAL;
     } else if (val >= 16384 ) {
         printk(KERN_ERR KMSG_PFX "delay store: range error\n");
         return -ERANGE;
@@ -199,7 +199,8 @@ void irqgen_sysfs_cleanup(void)
 {
     if (irqgen_kobj)
     {
-        kobject_put(irqgen_kobj);
+        kobject_put(irqgen_kobj);   
+        // sysfs_remove_file(irqgen_kobj, attrs);
     }
         // FIXME: decrease ref count for irqgen_kobj
 }

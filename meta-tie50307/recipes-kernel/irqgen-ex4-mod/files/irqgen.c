@@ -89,7 +89,6 @@ void enable_irq_generator(void)
 #endif
     // ### Done: HINT: use iowrite32 and the bitfield macroes to modify the register fields
     u32 regvalue = FIELD_PREP(IRQGEN_CTRL_REG_F_ENABLE, 1);  // Set enable bit
-                       
     iowrite32(regvalue, IRQGEN_CTRL_REG);
 }
 
@@ -114,12 +113,12 @@ void disable_irq_generator(void)
 void do_generate_irqs(uint16_t amount, uint8_t line, uint16_t delay)
 {
     u32 regvalue = 0
-                   | FIELD_PREP(IRQGEN_GENIRQ_REG_F_AMOUNT,  amount)
-                   | FIELD_PREP(IRQGEN_GENIRQ_REG_F_DELAY,    delay)
-                   | FIELD_PREP(IRQGEN_GENIRQ_REG_F_LINE,      line);
+                    | FIELD_PREP(IRQGEN_GENIRQ_REG_F_AMOUNT,  amount)
+                    | FIELD_PREP(IRQGEN_GENIRQ_REG_F_DELAY,    delay)
+                    | FIELD_PREP(IRQGEN_GENIRQ_REG_F_LINE,      line);
 
     printk(KERN_INFO KMSG_PFX "Generating %u interrupts with IRQ delay %u on line %d.\n",
-           amount, delay, line);
+            amount, delay, line);
 
     iowrite32(regvalue, IRQGEN_GENIRQ_REG);
 }
@@ -128,7 +127,7 @@ void do_generate_irqs(uint16_t amount, uint8_t line, uint16_t delay)
 u64 irqgen_read_latency(void)
 {
     // not supported by current IP block implementation
-    return 0;
+    return ioread32(IRQGEN_LATENCY_REG);;
 }
 
 // Returns the total generated IRQ count from IRQ_GEN_IRQ_COUNT_REG
@@ -209,19 +208,18 @@ static int32_t __init irqgen_init(void)
 
     return 0;
 
- err_sysfs_setup:
+err_sysfs_setup:
     // FIXME: free the appropriate resource when handling this error step
-    irqgen_sysfs_cleanup();
- err_request_irq:
+    free_irq(IRQGEN_FIRST_IRQ, dummy); 
+err_request_irq:
     // FIXME: free the appropriate resource when handling this error step
     //free_irq(unsigned int irq, void *dev);  //Nick
-    free_irq(IRQGEN_FIRST_IRQ, dummy);  //Nick
- err_ioremap:
-    // FIXME: free the appropriate resource when handling this error step
     iounmap(irqgen_reg_base);
- err_alloc_irqgen_data:
- 
- err_parse_parameters:
+err_ioremap:
+    // FIXME: free the appropriate resource when handling this error step
+    kfree(irqgen_data);
+err_alloc_irqgen_data:
+err_parse_parameters:
     printk(KERN_ERR KMSG_PFX "module initialization failed\n");
     return retval;
 }
@@ -231,15 +229,17 @@ static void __exit irqgen_exit(void)
 {
     // Read interrupt latency from the IRQ Generator on exit
     printk(KERN_INFO KMSG_PFX "IRQ count: generated since reboot %u, handled since load %u.\n",
-           irqgen_read_count(), irqgen_data->count_handled);
+            irqgen_read_count(), irqgen_data->count_handled);
     // Read interrupt latency from the IRQ Generator on exit
     printk(KERN_INFO KMSG_PFX "latency for last handled IRQ: %lluns.\n",
-           irqgen_read_latency());
-
+            irqgen_read_latency()*10);
 
     // FIXME: step through `init` in reverse order and disable/free/unmap allocated resources
+    disable_irq_generator();
     irqgen_sysfs_cleanup(); // FIXME: place this line in the right order
-
+    free_irq(IRQGEN_FIRST_IRQ, dummy);
+    iounmap(irqgen_reg_base);
+    kfree(irqgen_data);
     printk(KERN_INFO KMSG_PFX DRIVER_LNAME " exiting.\n");
 }
 
