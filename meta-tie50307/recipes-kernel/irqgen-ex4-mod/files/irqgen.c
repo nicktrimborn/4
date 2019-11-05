@@ -184,7 +184,7 @@ static int32_t __init irqgen_init(void)
     /* TODO: Register the handle to the relevant IRQ number */
     //retval = _request_irq(/* FIXME: fill the first arguments */, &dummy);
     //retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_LNAME, &dummy);
-    retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_NAME, &dummy);
+    retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_NAME, NULL);
 
     if (retval != 0) {
         printk(KERN_ERR KMSG_PFX "request_irq() failed with return value %d while requesting IRQ id %u.\n",
@@ -210,7 +210,7 @@ static int32_t __init irqgen_init(void)
 
 err_sysfs_setup:
     // FIXME: free the appropriate resource when handling this error step
-    free_irq(IRQGEN_FIRST_IRQ, dummy); 
+    free_irq(IRQGEN_FIRST_IRQ, NULL); 
 err_request_irq:
     // FIXME: free the appropriate resource when handling this error step
     //free_irq(unsigned int irq, void *dev);  //Nick
@@ -237,7 +237,7 @@ static void __exit irqgen_exit(void)
     // FIXME: step through `init` in reverse order and disable/free/unmap allocated resources
     disable_irq_generator();
     irqgen_sysfs_cleanup(); // FIXME: place this line in the right order
-    free_irq(IRQGEN_FIRST_IRQ, dummy);
+    free_irq(IRQGEN_FIRST_IRQ, NULL);
     iounmap(irqgen_reg_base);
     kfree(irqgen_data);
     printk(KERN_INFO KMSG_PFX DRIVER_LNAME " exiting.\n");
