@@ -8,7 +8,7 @@
  *          Real-Time System course (Bonus task: sysfs support).
  */
 
-#define BONUS_SYSFS_IS_IMPLEMENTED // FIXME: enable for the bonus exercise
+#define BONUS_SYSFS_IS_IMPLEMENTED // FIXED: enable for the bonus exercise
 #ifndef BONUS_SYSFS_IS_IMPLEMENTED
 
 int irqgen_sysfs_setup(void) { return 0; }
@@ -52,7 +52,7 @@ IRQGEN_ATTR_RO(count_handled);
 
 static ssize_t enabled_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf)
 {
-    // FIXME: read this value from the field in the CTRL register, print 1 or 0 a string to buf
+    // FIXED: read this value from the field in the CTRL register, print 1 or 0 a string to buf
     // HINT: check linux/bitfield.h to see how to use the bitfield macroes
 
     uint32_t bytes = 0;
@@ -83,7 +83,7 @@ IRQGEN_ATTR_RW(enabled);
 static u32 delay_store_buf = 0;
 static ssize_t delay_store(struct kobject *kobj, struct kobj_attribute *attr, const char *buf, size_t count)
 {
-    // FIXME: check boundaries, then store the value in delay_store_buf
+    // FIXED: check boundaries, then store the value in delay_store_buf
     // HINT: use kstrtoul()
     int retval;
     uint32_t bytes = 0;
@@ -115,7 +115,7 @@ static ssize_t amount_store(struct kobject *kobj, struct kobj_attribute *attr, c
 {
     unsigned long val;
     int retval;
-    // FIXME: save in val, then check boundaries
+    // FIXED: save in val, then check boundaries
     // HINT: use kstrtoul()
 
     retval = kstrtoul(buf, 0, &val);
@@ -145,7 +145,7 @@ IRQGEN_ATTR_WO(amount);
  * at once.
  */
 static struct attribute *attrs[] = {
-    // FIXME: add entries for `enabled`,`delay`,`amount`
+    // FIXED: add entries for `enabled`,`delay`,`amount`
     &IRQGEN_ATTR_GET_NAME(count_handled).attr,
     &IRQGEN_ATTR_GET_NAME(enabled).attr,
     &IRQGEN_ATTR_GET_NAME(delay).attr,
@@ -188,7 +188,7 @@ int irqgen_sysfs_setup(void)
     retval = sysfs_create_group(irqgen_kobj, &attr_group);
     if (0 != retval) {
         printk(KERN_ERR KMSG_PFX "sysfs_create_group() failed.\n");
-        // FIXME: decrease ref count for irqgen_kobj
+        // FIXED: decrease ref count for irqgen_kobj
         kobject_put(irqgen_kobj);
     }
 
@@ -202,7 +202,7 @@ void irqgen_sysfs_cleanup(void)
         kobject_put(irqgen_kobj);   
         // sysfs_remove_file(irqgen_kobj, attrs);
     }
-        // FIXME: decrease ref count for irqgen_kobj
+        // FIXED: decrease ref count for irqgen_kobj
 }
 
 #endif /* !defined(BONUS_SYSFS_IS_IMPLEMENTED) */

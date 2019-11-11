@@ -20,7 +20,7 @@
 #include "irqgen.h"                 // Shared module specific declarations
 
 /* Linux IRQ number for the first hwirq line */
-#define IRQGEN_FIRST_IRQ 45 //Done: FIXME: find the right Linux IRQ number for the first hwirq of the device
+#define IRQGEN_FIRST_IRQ 45 //Done: FIXED: find the right Linux IRQ number for the first hwirq of the device
 
 // Kernel token address to access the IRQ Generator core register
 void __iomem *irqgen_reg_base = NULL;
@@ -61,14 +61,14 @@ static int parse_parameters(void)
 /* ^^^^ ---- LKM Parameters ^^^^ ---- */
 
 
-/* FIXME: (1) implement the interrupt handler function */
+/* FIXED: (1) implement the interrupt handler function */
 static irqreturn_t irqgen_irqhandler(int irq, void *data)
 {
 #ifdef DEBUG
     printk(KERN_INFO KMSG_PFX "IRQ #%d received.\n", irq);
 #endif
 
-    // FIXME: increment the `count_handled` counter before ACK
+    // FIXED: increment the `count_handled` counter before ACK
     // HINT: use iowrite32 and the bitfield macroes to modify the register fields
     irqgen_data->count_handled++;    
     
@@ -78,7 +78,7 @@ static irqreturn_t irqgen_irqhandler(int irq, void *data)
 
     iowrite32(regvalue, IRQGEN_CTRL_REG);
     return IRQ_HANDLED; // Nick
-    // return IRQ_NONE; // FIXME: what should be returned on completion?
+    // return IRQ_NONE; // FIXED: what should be returned on completion?
 }
 
 /* Enable the IRQ Generator */
@@ -98,7 +98,7 @@ void disable_irq_generator(void)
 #ifdef DEBUG
     printk(KERN_INFO KMSG_PFX "Disabling IRQ Generator.\n");
 #endif
-    // ### Done:FIXME: set to zero the `amount` field, then disable the controller
+    // ### Done:FIXED: set to zero the `amount` field, then disable the controller
     // HINT: use iowrite32 and the bitfield macroes to modify the register fields
 
     /* Set Amount field to 0 */              
@@ -127,14 +127,14 @@ void do_generate_irqs(uint16_t amount, uint8_t line, uint16_t delay)
 u64 irqgen_read_latency(void)
 {
     // not supported by current IP block implementation
-    return ioread32(IRQGEN_LATENCY_REG);;
+    return ioread32(IRQGEN_LATENCY_REG);
 }
 
 // Returns the total generated IRQ count from IRQ_GEN_IRQ_COUNT_REG
 u32 irqgen_read_count(void)
 {
     
-    // ##### Done:FIXME: use ioread32 to read the proper register
+    // ##### Done:FIXED: use ioread32 to read the proper register
     return ioread32(IRQGEN_IRQ_COUNT_REG);
 }
 
@@ -172,7 +172,7 @@ static int32_t __init irqgen_init(void)
         goto err_alloc_irqgen_data;
     }
 
-    /* TODO: Map the IRQ Generator core register with ioremap */
+    /* DONE: Map the IRQ Generator core register with ioremap */
     // irqgen_reg_base = NULL;
     irqgen_reg_base = ioremap(IRQGEN_REG_PHYS_BASE, IRQGEN_REG_PHYS_SIZE);
     if (NULL == irqgen_reg_base) {
@@ -181,8 +181,8 @@ static int32_t __init irqgen_init(void)
         goto err_ioremap;
     }
 
-    /* TODO: Register the handle to the relevant IRQ number */
-    //retval = _request_irq(/* FIXME: fill the first arguments */, &dummy);
+    /* DONE: Register the handle to the relevant IRQ number */
+    //retval = _request_irq(/* DONE: fill the first arguments */, &dummy);
     //retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_LNAME, &dummy);
     retval = _request_irq(IRQGEN_FIRST_IRQ, irqgen_irqhandler, IRQF_TRIGGER_RISING, DRIVER_NAME, NULL);
 
@@ -209,14 +209,14 @@ static int32_t __init irqgen_init(void)
     return 0;
 
 err_sysfs_setup:
-    // FIXME: free the appropriate resource when handling this error step
+    // FIXED: free the appropriate resource when handling this error step
     free_irq(IRQGEN_FIRST_IRQ, NULL); 
 err_request_irq:
-    // FIXME: free the appropriate resource when handling this error step
+    // FIXED: free the appropriate resource when handling this error step
     //free_irq(unsigned int irq, void *dev);  //Nick
     iounmap(irqgen_reg_base);
 err_ioremap:
-    // FIXME: free the appropriate resource when handling this error step
+    // FIXED: free the appropriate resource when handling this error step
     kfree(irqgen_data);
 err_alloc_irqgen_data:
 err_parse_parameters:
