@@ -1,8 +1,9 @@
+#ifndef __IRQ_GEN_BINDINGS_HEADER
+#define __IRQ_GEN_BINDINGS_HEADER
+
 /*
  * This header provides constants for IRQ generator bindings.
  */
-#ifndef __IRQ_GEN_BINDINGS_HEADER
-#define __IRQ_GEN_BINDINGS_HEADER
 
 // ACK values for level type interrupt handling per IRQ line
 #define ACK1d 0x0

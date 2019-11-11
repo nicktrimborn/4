@@ -273,7 +273,7 @@ static int irqgen_probe(struct platform_device *pdev)
         /* Register the handle to the relevant IRQ number and the corresponding idx value */
         // retval = _devm_request_irq(/* FIXED */);
         //ret_val = devm_request_irq(dev, irq, intr_handler, IRQF_SHARED, DEVICE_NAME, intr_idx[i]);
-        retval = _devm_request_irq(&pdev->dev, irqgen_irqhandler, IRQF_SHARED, DEVICE_NAME, intr_idx[i])
+        retval = _devm_request_irq(&pdev->dev, irqgen_irqhandler, IRQF_SHARED, DEVICE_NAME, intr_idx[i]);
         if (retval != 0) {
             printk(KERN_ERR KMSG_PFX
                     "devm_request_irq() failed with return value %d "
