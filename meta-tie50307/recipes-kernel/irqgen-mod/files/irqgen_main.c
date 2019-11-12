@@ -18,7 +18,6 @@
 #include <asm/io.h>                 // IO operations
 #include <linux/slab.h>             // Kernel slab allocator
 
-
 #include "irqgen.h"                 // Shared module specific declarations
 
 #define PROP_COMPATIBLE "wapice,irq-gen" // FIXED: compatible property for the irqgen device from the devicetree
@@ -36,7 +35,7 @@ struct irqgen_data *irqgen_data = NULL;
 static struct platform_driver irqgen_pdriver;
 
 /* vvvv ---- LKM Parameters vvvv ---- */
-static unsigned int generate_irqs = 0;
+static unsigned int generate_irqs = 1;
 module_param(generate_irqs, uint, 0444);
 MODULE_PARM_DESC(generate_irqs, "Amount of IRQs to generate at load time.");
 
@@ -119,9 +118,7 @@ void disable_irq_generator(void)
 
     /* Set Amount field to 0 */              
     iowrite32(FIELD_PREP(IRQGEN_GENIRQ_REG_F_AMOUNT,  0), IRQGEN_GENIRQ_REG);
-
     /* Disable IRQ Generataor */
-
     iowrite32(FIELD_PREP(IRQGEN_CTRL_REG_F_ENABLE, 0), IRQGEN_CTRL_REG);
 }
 
@@ -186,7 +183,7 @@ static int irqgen_probe(struct platform_device *pdev)
     struct resource *iomem_range = NULL;
 
     // FIXED: use DEVM_KZALLOC_HELPER to dinamically allocate irqgen_data (the pointers inside the structure will need separate allocations)
-    irqgen_data = DEVM_KZALLOC_HELPER(irqgen_data, pdev, 1, GFP_KERNEL);
+    DEVM_KZALLOC_HELPER(irqgen_data, pdev, 1, GFP_KERNEL);
 
     // FIXED: platform_get_resource() (and error checking)
     iomem_range = platform_get_resource(pdev, IORESOURCE_MEM, 0);
@@ -262,6 +259,7 @@ static int irqgen_probe(struct platform_device *pdev)
                 retval = -ENODEV;
             } else {
                 printk(KERN_ERR KMSG_PFX
+                        "Invalid IRQ ID entry for the device at index %d.\n",
                         i);
             }
             goto err;
@@ -271,9 +269,8 @@ static int irqgen_probe(struct platform_device *pdev)
         irqgen_data->intr_idx[i] = i;
 
         /* Register the handle to the relevant IRQ number and the corresponding idx value */
-        // retval = _devm_request_irq(/* FIXED */);
-        //ret_val = devm_request_irq(dev, irq, intr_handler, IRQF_SHARED, DEVICE_NAME, intr_idx[i]);
-        retval = _devm_request_irq(&pdev->dev, irqgen_irqhandler, IRQF_SHARED, DEVICE_NAME, intr_idx[i]);
+        retval = _devm_request_irq(&pdev->dev, irq_id, irqgen_irqhandler, IRQF_SHARED, 
+                                    DRIVER_NAME, &irqgen_data->intr_idx[i]);
         if (retval != 0) {
             printk(KERN_ERR KMSG_PFX
                     "devm_request_irq() failed with return value %d "
@@ -318,14 +315,18 @@ static int32_t __init irqgen_init(void)
         goto err_parse_parameters;
     }
 
-    // FIXME: something is missing here
+    // FIXED: something is missing here
+    platform_driver_probe(&irqgen_pdriver, irqgen_probe);
 
     /* Enable the IRQ Generator */
     enable_irq_generator();
-
+    
     if (generate_irqs > 0) {
         /* Generate IRQs (amount, line, delay) */
-        do_generate_irqs(generate_irqs, 0, loadtime_irq_delay);
+        int i;
+        for(i = 0; i < 16; i++) {
+            do_generate_irqs(generate_irqs, i, loadtime_irq_delay);
+        }
     }
 
     return 0;
@@ -349,17 +350,29 @@ static void __exit irqgen_exit(void)
     /* Disable the IRQ Generator */
     disable_irq_generator();
 
-    /* FIXME: Unregister the platform driver and associated resources */
+    /* FIXED: Unregister the platform driver and associated resources */
+    platform_driver_unregister(&irqgen_pdriver);
+
 
     printk(KERN_INFO KMSG_PFX DRIVER_LNAME " exiting.\n");
 }
 
 
+// FIXED: glue together the platform driver and the device-tree (use PROP_COMPATIBLE)
+static const struct of_device_id irqgen_of_ids[] = {
+	{ .compatible = PROP_COMPATIBLE,},
+	{/* end of list */}
+};
 
-
-
-// FIXME: glue together the platform driver and the device-tree (use PROP_COMPATIBLE)
-
+static struct platform_driver irqgen_pdriver = {
+	.driver = {
+		.name = DRIVER_NAME,
+		.owner = THIS_MODULE,
+		.of_match_table = irqgen_of_ids,
+	},
+	.probe = irqgen_probe,
+	.remove = irqgen_remove,
+};
 
 module_init(irqgen_init);
 module_exit(irqgen_exit);

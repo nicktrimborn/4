@@ -234,9 +234,9 @@ static void __exit irqgen_exit(void)
     printk(KERN_INFO KMSG_PFX "latency for last handled IRQ: %lluns.\n",
             irqgen_read_latency()*10);
 
-    // FIXME: step through `init` in reverse order and disable/free/unmap allocated resources
+    // FIXED: step through `init` in reverse order and disable/free/unmap allocated resources
     disable_irq_generator();
-    irqgen_sysfs_cleanup(); // FIXME: place this line in the right order
+    irqgen_sysfs_cleanup(); // FIXED: place this line in the right order
     free_irq(IRQGEN_FIRST_IRQ, NULL);
     iounmap(irqgen_reg_base);
     kfree(irqgen_data);
