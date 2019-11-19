@@ -232,6 +232,9 @@ static int irqgen_probe(struct platform_device *pdev)
                         pdev, irqs_count, GFP_KERNEL);
     DEVM_KZALLOC_HELPER(irqgen_data->intr_handled,
                         pdev, irqs_count, GFP_KERNEL);
+    //Allocate memeory for latencies
+    DEVM_KZALLOC_HELPER(irqgen_data->latencies,
+                        pdev, irqs_count, GFP_KERNEL);
     
     irqgen_data->line_count = irqs_count;
     /* End inititialisation */
@@ -331,8 +334,8 @@ static int32_t __init irqgen_init(void)
 
     return 0;
 
- err_platform_driver_probe:
- err_parse_parameters:
+err_platform_driver_probe:
+err_parse_parameters:
     printk(KERN_ERR KMSG_PFX "module initialization failed\n");
     return retval;
 }
