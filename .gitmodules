@@ -1,9 +1,12 @@
 [submodule "poky"]
 	path = poky
 	url = git://git.yoctoproject.org/poky
+	ignore = dirty
 [submodule "meta-pynq"]
 	path = meta-pynq
 	url = git@course-gitlab.tuni.fi:tie-50307-real-time-systems_2019-2020/meta-pynq.git
+	ignore = dirty
 [submodule "meta-xilinx"]
 	path = meta-xilinx
 	url = https://github.com/Xilinx/meta-xilinx
+	ignore = dirty

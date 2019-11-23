@@ -1,0 +1,347 @@
+--- Starting bitbake server pid 14364 at 2019-10-22 14:09:35.724948 ---
+Started bitbake server pid 14364
+DEBUG: Found bblayers.conf (/home/nick/4/conf/bblayers.conf)
+DEBUG: Adding layer /home/nick/4/poky/meta
+DEBUG: Adding layer /home/nick/4/poky/meta-poky
+DEBUG: Adding layer /home/nick/4/poky/meta-yocto-bsp
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:746: including conf/machine/qemux86.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:10: including conf/machine/include/qemu.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:11: including conf/machine/include/tune-i586.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/include/tune-i586.inc:3: including conf/machine/include/x86/arch-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:12: including conf/machine/include/qemuboot-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:748: including conf/distro/poky.conf
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+Entering server connection loop
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/patch.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/terminal.bbclass (from /home/nick/4/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/staging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/mirrors.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utils.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utility-tasks.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/metadata_scm.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/logging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package.bbclass (from /home/nick/4/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/packagedata.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/chrpath.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/insane.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/linuxloader.bbclass (from /home/nick/4/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/nick/4/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/nick/4/cache/bb_codeparser.dat'
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'prefile': [], 'postfile': [], 'profile': False, 'invalidate_stamp': None, 'abort': True, 'dry_run': False, 'verbose': False, 'force': False, 'server_timeout': None, 'extra_assume_provided': [], 'dump_signatures': [], 'debug_domains': [], 'debug': 0}, {'LC_IDENTIFICATION': 'en_AU.UTF-8', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'WINDOWID': '25165828', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'ROS_VERSION': '1', 'OLDPWD': '/home/nick/4/poky', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LC_NAME': 'en_AU.UTF-8', 'BBPATH': '/home/nick/4', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/usr/share/upstart/xdg:/etc/xdg', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '14190', '_': '/home/nick/4/poky/bitbake/bin/bitbake', 'GTK_IM_MODULE': 'ibus', 'SESSIONTYPE': 'gnome-session', 'LC_NUMERIC': 'en_AU.UTF-8', 'GTK_MODULES': 'gail:atk-bridge', 'IBUS_DISABLE_SNOOPER': '1', 'ROS_MASTER_URI': 'http://localhost:11311', 'DISPLAY': ':0', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-PBArWebdSJ', 'PWD': '/home/nick/4', 'BUILDDIR': '/home/nick/4', 'INSTANCE': '', 'LC_ADDRESS': 'en_AU.UTF-8', 'XDG_RUNTIME_DIR': '/run/user/1000', 'XDG_SESSION_ID': '1', 'LANG': 'en_US.UTF-8', 'XDG_SESSION_TYPE': 'x11', 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path', 'LC_TIME': 'en_AU.UTF-8', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'CMAKE_PREFIX_PATH': '/home/nick/catkin_ws/devel:/opt/ros/kinetic', 'SHELL': '/bin/bash', 'CLUTTER_IM_MODULE': 'xim', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'PYTHONPATH': '/home/nick/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages', 'LC_TELEPHONE': 'en_AU.UTF-8', 'PKG_CONFIG_PATH': '/home/nick/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig', 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path', 'COLORTERM': 'gnome-terminal', 'LOGNAME': 'nick', 'LC_MEASUREMENT': 'en_AU.UTF-8', 'ROS_PACKAGE_PATH': '/home/nick/catkin_ws/src/arm-control-dreamteam/arm_controllers:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_control:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_description:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_gazebo:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_launch:/home/nick/catkin_ws/src/moro_group1/filtering_utils:/home/nick/catkin_ws/src/marker_rviz_plugin:/home/nick/catkin_ws/src/moro_group1/moro_localization:/home/nick/catkin_ws/src/moro_group1/moro_ros:/home/nick/catkin_ws/src/moro_group1/moro_simulator:/home/nick/catkin_ws/src/ros_best_practices/ros_package_template:/home/nick/catkin_ws/src/rospy_message_converter:/home/nick/catkin_ws/src/rqt_robot_dashboard:/home/nick/catkin_ws/src/stage_ros:/home/nick/catkin_ws/src/teleop_twist_keyboard:/opt/ros/kinetic/share', 'GPG_AGENT_INFO': '/home/nick/.gnupg/S.gpg-agent:0:1', 'ORBIT_SOCKETDIR': '/tmp/orbit-nick', 'PATH': '/home/nick/4/poky/scripts:/home/nick/4/poky/bitbake/bin:/opt/ros/kinetic/bin:/home/nick/bin:/home/nick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'HOME': '/home/nick', 'ROS_DISTRO': 'kinetic', 'XDG_SEAT': 'seat0', 'GNOME_KEYRING_CONTROL': '', 'ROS_ROOT': '/opt/ros/kinetic/share/ros', 'LC_ALL': 'en_US.UTF-8', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'LD_LIBRARY_PATH': '/home/nick/catkin_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu', 'XMODIFIERS': '@im=ibus', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1376', 'XDG_MENU_PREFIX': 'gnome-', 'ROSLISP_PACKAGE_DIRECTORIES': '/home/nick/catkin_ws/devel/share/common-lisp', 'WINDOWPATH': '7', 'QT4_IM_MODULE': 'xim', 'QT_IM_MODULE': 'ibus', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'LC_MONETARY': 'en_AU.UTF-8', 'LC_PAPER': 'en_AU.UTF-8', 'GNOME_KEYRING_PID': '', 'ROS_ETC_DIR': '/opt/ros/kinetic/etc/ros', 'SESSION': 'gnome', 'USERNAME': 'nick', 'GTK2_MODULES': 'overlay-scrollbar', 'GJS_DEBUG_OUTPUT': 'stderr', 'IM_CONFIG_PHASE': '1', 'JOB': 'dbus', 'XDG_SESSION_DESKTOP': 'gnome', 'PAPERSIZE': 'a4', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'SESSION_MANAGER': 'local/nick-XPS-13-9350:@/tmp/.ICE-unix/1616,unix/nick-XPS-13-9350:/tmp/.ICE-unix/1616', 'XDG_VTNR': '7', 'DESKTOP_SESSION': 'gnome', 'TERM': 'xterm', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'TERMINATOR_UUID': 'urn:uuid:e7737bee-0553-4311-af1d-3c06dc776a97', 'SHLVL': '1', 'QT_ACCESSIBILITY': '1', 'GDMSESSION': 'gnome', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'USER': 'nick', 'XDG_CURRENT_DESKTOP': 'GNOME'}, ['/home/nick/4/poky/bitbake/bin/bitbake', 'core-image-minimal']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-minimal'], 'build']
+--2019-10-22 14:10:31--  http://downloads.yoctoproject.org/releases/uninative/1.9/x86_64-nativesdk-libc.tar.bz2
+Resolving downloads.yoctoproject.org (downloads.yoctoproject.org)... 198.145.29.63
+Connecting to downloads.yoctoproject.org (downloads.yoctoproject.org)|198.145.29.63|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 14312274 (14M) [application/octet-stream]
+Saving to: ‘/home/nick/4/downloads/uninative/c26622a1f27dbf5b25de986b11584b5c5b2f322d9eb367f705a744f58a5561ec/x86_64-nativesdk-libc.tar.bz2’
+
+
+2019-10-22 14:10:35 (4.14 MB/s) - ‘/home/nick/4/downloads/uninative/c26622a1f27dbf5b25de986b11584b5c5b2f322d9eb367f705a744f58a5561ec/x86_64-nativesdk-libc.tar.bz2’ saved [14312274/14312274]
+
+Running command ['stateShutdown']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 15688 at 2019-10-22 14:13:31.687412 ---
+Started bitbake server pid 15688
+DEBUG: Found bblayers.conf (/home/nick/4/conf/bblayers.conf)
+DEBUG: Adding layer /home/nick/4/poky/meta
+DEBUG: Adding layer /home/nick/4/poky/meta-poky
+DEBUG: Adding layer /home/nick/4/poky/meta-yocto-bsp
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:746: including conf/machine/qemux86.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:10: including conf/machine/include/qemu.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:11: including conf/machine/include/tune-i586.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/include/tune-i586.inc:3: including conf/machine/include/x86/arch-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:12: including conf/machine/include/qemuboot-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:748: including conf/distro/poky.conf
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/patch.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:4)
+Entering server connection loop
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/terminal.bbclass (from /home/nick/4/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/staging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/mirrors.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utils.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utility-tasks.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/metadata_scm.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/logging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package.bbclass (from /home/nick/4/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/packagedata.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/chrpath.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/insane.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/linuxloader.bbclass (from /home/nick/4/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/nick/4/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/nick/4/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'debug': 0, 'invalidate_stamp': None, 'extra_assume_provided': [], 'profile': False, 'prefile': [], 'dry_run': False, 'debug_domains': [], 'abort': True, 'server_timeout': None, 'force': False, 'dump_signatures': [], 'verbose': False, 'postfile': []}, {'XDG_MENU_PREFIX': 'gnome-', 'USERNAME': 'nick', 'ROS_VERSION': '1', 'ROS_DISTRO': 'kinetic', 'SESSION': 'gnome', 'LC_TELEPHONE': 'en_AU.UTF-8', 'PAPERSIZE': 'a4', 'WINDOWPATH': '7', 'ROS_PACKAGE_PATH': '/home/nick/catkin_ws/src/arm-control-dreamteam/arm_controllers:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_control:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_description:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_gazebo:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_launch:/home/nick/catkin_ws/src/moro_group1/filtering_utils:/home/nick/catkin_ws/src/marker_rviz_plugin:/home/nick/catkin_ws/src/moro_group1/moro_localization:/home/nick/catkin_ws/src/moro_group1/moro_ros:/home/nick/catkin_ws/src/moro_group1/moro_simulator:/home/nick/catkin_ws/src/ros_best_practices/ros_package_template:/home/nick/catkin_ws/src/rospy_message_converter:/home/nick/catkin_ws/src/rqt_robot_dashboard:/home/nick/catkin_ws/src/stage_ros:/home/nick/catkin_ws/src/teleop_twist_keyboard:/opt/ros/kinetic/share', 'LC_MEASUREMENT': 'en_AU.UTF-8', 'SESSIONTYPE': 'gnome-session', 'WINDOWID': '25165828', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'QT_ACCESSIBILITY': '1', 'XMODIFIERS': '@im=ibus', 'XDG_CURRENT_DESKTOP': 'GNOME', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'LOGNAME': 'nick', 'QT_IM_MODULE': 'ibus', 'OLDPWD': '/home/nick/4/poky', 'LC_NAME': 'en_AU.UTF-8', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'CLUTTER_IM_MODULE': 'xim', 'GNOME_KEYRING_PID': '', 'GTK_IM_MODULE': 'ibus', 'IBUS_DISABLE_SNOOPER': '1', 'ROSLISP_PACKAGE_DIRECTORIES': '/home/nick/catkin_ws/devel/share/common-lisp', 'LC_PAPER': 'en_AU.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-PBArWebdSJ', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', '_': '/home/nick/4/poky/bitbake/bin/bitbake', 'PYTHONPATH': '/home/nick/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages', 'JOB': 'dbus', 'PATH': '/home/nick/4/poky/scripts:/home/nick/4/poky/bitbake/bin:/opt/ros/kinetic/bin:/home/nick/bin:/home/nick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'GNOME_KEYRING_CONTROL': '', 'COLORTERM': 'gnome-terminal', 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path', 'GDMSESSION': 'gnome', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'LC_MONETARY': 'en_AU.UTF-8', 'SESSION_MANAGER': 'local/nick-XPS-13-9350:@/tmp/.ICE-unix/1616,unix/nick-XPS-13-9350:/tmp/.ICE-unix/1616', 'GTK2_MODULES': 'overlay-scrollbar', 'LC_NUMERIC': 'en_AU.UTF-8', 'GTK_MODULES': 'gail:atk-bridge', 'DISPLAY': ':0', 'LANG': 'en_US.UTF-8', 'LC_ADDRESS': 'en_AU.UTF-8', 'XDG_SESSION_TYPE': 'x11', 'IM_CONFIG_PHASE': '1', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/usr/share/upstart/xdg:/etc/xdg', 'XDG_SESSION_ID': '1', 'DESKTOP_SESSION': 'gnome', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '14190', 'TERMINATOR_UUID': 'urn:uuid:e7737bee-0553-4311-af1d-3c06dc776a97', 'SHELL': '/bin/bash', 'PWD': '/home/nick/4', 'INSTANCE': '', 'LC_ALL': 'en_US.UTF-8', 'USER': 'nick', 'ROS_MASTER_URI': 'http://localhost:11311', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'TERM': 'xterm', 'ORBIT_SOCKETDIR': '/tmp/orbit-nick', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'LC_TIME': 'en_AU.UTF-8', 'SHLVL': '1', 'QT4_IM_MODULE': 'xim', 'BBPATH': '/home/nick/4', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1376', 'GPG_AGENT_INFO': '/home/nick/.gnupg/S.gpg-agent:0:1', 'ROS_ROOT': '/opt/ros/kinetic/share/ros', 'BUILDDIR': '/home/nick/4', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LD_LIBRARY_PATH': '/home/nick/catkin_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu', 'GJS_DEBUG_OUTPUT': 'stderr', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'XDG_SESSION_DESKTOP': 'gnome', 'HOME': '/home/nick', 'CMAKE_PREFIX_PATH': '/home/nick/catkin_ws/devel:/opt/ros/kinetic', 'PKG_CONFIG_PATH': '/home/nick/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'XDG_SEAT': 'seat0', 'ROS_ETC_DIR': '/opt/ros/kinetic/etc/ros', 'LC_IDENTIFICATION': 'en_AU.UTF-8', 'XDG_VTNR': '7'}, ['/home/nick/4/poky/bitbake/bin/bitbake', 'core-image-minimal']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-minimal'], 'build']
+Running command ['stateForceShutdown']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 23197 at 2019-10-22 14:15:50.720167 ---
+Started bitbake server pid 23197
+DEBUG: Found bblayers.conf (/home/nick/4/conf/bblayers.conf)
+DEBUG: Adding layer /home/nick/4/poky/meta
+DEBUG: Adding layer /home/nick/4/poky/meta-poky
+DEBUG: Adding layer /home/nick/4/poky/meta-yocto-bsp
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:746: including conf/machine/qemux86.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:10: including conf/machine/include/qemu.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:11: including conf/machine/include/tune-i586.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/include/tune-i586.inc:3: including conf/machine/include/x86/arch-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:12: including conf/machine/include/qemuboot-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:748: including conf/distro/poky.conf
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+Entering server connection loop
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/patch.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/terminal.bbclass (from /home/nick/4/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/staging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/mirrors.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utils.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utility-tasks.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/metadata_scm.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/logging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package.bbclass (from /home/nick/4/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/packagedata.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/chrpath.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/insane.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/linuxloader.bbclass (from /home/nick/4/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/nick/4/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/nick/4/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'invalidate_stamp': None, 'postfile': [], 'extra_assume_provided': [], 'dry_run': False, 'debug': 0, 'force': False, 'profile': False, 'dump_signatures': [], 'abort': True, 'verbose': False, 'prefile': [], 'server_timeout': None, 'debug_domains': []}, {'SESSION_MANAGER': 'local/nick-XPS-13-9350:@/tmp/.ICE-unix/1616,unix/nick-XPS-13-9350:/tmp/.ICE-unix/1616', 'ROS_DISTRO': 'kinetic', 'JOB': 'dbus', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1376', 'TERM': 'xterm', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/usr/share/upstart/xdg:/etc/xdg', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'WINDOWPATH': '7', 'GJS_DEBUG_OUTPUT': 'stderr', 'WINDOWID': '25165828', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'LC_ALL': 'en_US.UTF-8', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '14190', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'XDG_SEAT': 'seat0', 'DISPLAY': ':0', 'USER': 'nick', 'IM_CONFIG_PHASE': '1', 'PYTHONPATH': '/home/nick/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages', 'XDG_VTNR': '7', 'LC_ADDRESS': 'en_AU.UTF-8', 'GTK_MODULES': 'gail:atk-bridge', 'ROS_MASTER_URI': 'http://localhost:11311', 'XMODIFIERS': '@im=ibus', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LC_TIME': 'en_AU.UTF-8', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'GNOME_KEYRING_PID': '', 'PAPERSIZE': 'a4', 'HOME': '/home/nick', 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'COLORTERM': 'gnome-terminal', 'LC_TELEPHONE': 'en_AU.UTF-8', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-PBArWebdSJ', 'ROS_PACKAGE_PATH': '/home/nick/catkin_ws/src/arm-control-dreamteam/arm_controllers:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_control:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_description:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_gazebo:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_launch:/home/nick/catkin_ws/src/moro_group1/filtering_utils:/home/nick/catkin_ws/src/marker_rviz_plugin:/home/nick/catkin_ws/src/moro_group1/moro_localization:/home/nick/catkin_ws/src/moro_group1/moro_ros:/home/nick/catkin_ws/src/moro_group1/moro_simulator:/home/nick/catkin_ws/src/ros_best_practices/ros_package_template:/home/nick/catkin_ws/src/rospy_message_converter:/home/nick/catkin_ws/src/rqt_robot_dashboard:/home/nick/catkin_ws/src/stage_ros:/home/nick/catkin_ws/src/teleop_twist_keyboard:/opt/ros/kinetic/share', 'DESKTOP_SESSION': 'gnome', 'LC_NAME': 'en_AU.UTF-8', 'SHELL': '/bin/bash', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'LC_PAPER': 'en_AU.UTF-8', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', '_': '/home/nick/4/poky/bitbake/bin/bitbake', 'XDG_CURRENT_DESKTOP': 'GNOME', 'XDG_SESSION_ID': '1', 'XDG_SESSION_TYPE': 'x11', 'IBUS_DISABLE_SNOOPER': '1', 'GDMSESSION': 'gnome', 'XDG_RUNTIME_DIR': '/run/user/1000', 'LANG': 'en_US.UTF-8', 'LC_MEASUREMENT': 'en_AU.UTF-8', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'QT4_IM_MODULE': 'xim', 'ROS_ROOT': '/opt/ros/kinetic/share/ros', 'LC_NUMERIC': 'en_AU.UTF-8', 'CMAKE_PREFIX_PATH': '/home/nick/catkin_ws/devel:/opt/ros/kinetic', 'LC_MONETARY': 'en_AU.UTF-8', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'CLUTTER_IM_MODULE': 'xim', 'ROS_ETC_DIR': '/opt/ros/kinetic/etc/ros', 'ROSLISP_PACKAGE_DIRECTORIES': '/home/nick/catkin_ws/devel/share/common-lisp', 'ORBIT_SOCKETDIR': '/tmp/orbit-nick', 'GTK_IM_MODULE': 'ibus', 'QT_IM_MODULE': 'ibus', 'LC_IDENTIFICATION': 'en_AU.UTF-8', 'LD_LIBRARY_PATH': '/home/nick/catkin_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu', 'INSTANCE': '', 'BBPATH': '/home/nick/4', 'GNOME_KEYRING_CONTROL': '', 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path', 'ROS_VERSION': '1', 'PATH': '/home/nick/4/poky/scripts:/home/nick/4/poky/bitbake/bin:/opt/ros/kinetic/bin:/home/nick/bin:/home/nick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSIONTYPE': 'gnome-session', 'GTK2_MODULES': 'overlay-scrollbar', 'TERMINATOR_UUID': 'urn:uuid:e7737bee-0553-4311-af1d-3c06dc776a97', 'XDG_MENU_PREFIX': 'gnome-', 'SESSION': 'gnome', 'OLDPWD': '/home/nick/4/poky', 'USERNAME': 'nick', 'PWD': '/home/nick/4', 'PKG_CONFIG_PATH': '/home/nick/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig', 'QT_ACCESSIBILITY': '1', 'BUILDDIR': '/home/nick/4', 'SHLVL': '1', 'GPG_AGENT_INFO': '/home/nick/.gnupg/S.gpg-agent:0:1', 'LOGNAME': 'nick', 'XDG_SESSION_DESKTOP': 'gnome'}, ['/home/nick/4/poky/bitbake/bin/bitbake', 'core-image-minimal']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-minimal'], 'build']
+Running command ['stateShutdown']
+Running command ['stateForceShutdown']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting
+--- Starting bitbake server pid 14964 at 2019-10-22 14:17:28.501716 ---
+Started bitbake server pid 14964
+DEBUG: Found bblayers.conf (/home/nick/4/conf/bblayers.conf)
+DEBUG: Adding layer /home/nick/4/poky/meta
+DEBUG: Adding layer /home/nick/4/poky/meta-poky
+DEBUG: Adding layer /home/nick/4/poky/meta-yocto-bsp
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:741: including conf/abi_version.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:742: including conf/site.conf
+DEBUG: CONF file 'conf/site.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:743: including conf/auto.conf
+DEBUG: CONF file 'conf/auto.conf' not found
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:744: including conf/local.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:745: including conf/multiconfig/default.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:746: including conf/machine/qemux86.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:10: including conf/machine/include/qemu.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:11: including conf/machine/include/tune-i586.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/include/tune-i586.inc:3: including conf/machine/include/x86/arch-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/machine/qemux86.conf:12: including conf/machine/include/qemuboot-x86.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:747: including conf/machine-sdk/x86_64.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:748: including conf/distro/poky.conf
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:101: including conf/distro/include/poky-world-exclude.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:102: including conf/distro/include/no-static-libs.inc
+DEBUG: CONF /home/nick/4/poky/meta-poky/conf/distro/poky.conf:103: including conf/distro/include/yocto-uninative.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:749: including conf/distro/defaultsetup.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:1: including conf/distro/include/default-providers.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:2: including conf/distro/include/default-versions.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:3: including conf/distro/include/default-distrovars.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:4: including conf/distro/include/world-broken.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:7: including conf/distro/include/tcmode-default.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/include/tcmode-default.inc:71: including conf/distro/include/as-needed.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:10: including conf/distro/include/tclibc-glibc.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/distro/defaultsetup.conf:12: including conf/distro/include/uninative-flags.inc
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:750: including conf/documentation.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:751: including conf/licenses.conf
+DEBUG: CONF /home/nick/4/poky/meta/conf/bitbake.conf:752: including conf/sanity.conf
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/base.bbclass (from configuration INHERITs:0)
+Entering server connection loop
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/patch.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:4)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/terminal.bbclass (from /home/nick/4/poky/meta/classes/patch.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/staging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/mirrors.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:7)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utils.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:8)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/utility-tasks.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:9)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/metadata_scm.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:10)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/logging.bbclass (from /home/nick/4/poky/meta/classes/base.bbclass:11)
+DEBUG: Inheriting /home/nick/4/poky/meta-poky/classes/poky-sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/uninative.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package_rpm.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/package.bbclass (from /home/nick/4/poky/meta/classes/package_rpm.bbclass:1)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/packagedata.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:41)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/chrpath.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:42)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/insane.bbclass (from /home/nick/4/poky/meta/classes/package.bbclass:45)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/buildstats.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-mklibs.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/linuxloader.bbclass (from /home/nick/4/poky/meta/classes/image-mklibs.bbclass:5)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/image-prelink.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/debian.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/devshell.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sstate.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/license.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/remove-libtool.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/blacklist.bbclass (from configuration INHERITs:0)
+DEBUG: Inheriting /home/nick/4/poky/meta/classes/sanity.bbclass (from configuration INHERITs:0)
+DEBUG: Clearing SRCREV cache due to cache policy of: clear
+DEBUG: Using cache in '/home/nick/4/cache/local_file_checksum_cache.dat'
+DEBUG: Using cache in '/home/nick/4/cache/bb_codeparser.dat'
+DEBUG: Enabling uninative
+Accepting [<socket.socket fd=7, family=AddressFamily.AF_UNIX, type=SocketKind.SOCK_STREAM, proto=0, laddr=bitbake.sock>]
+Connecting Client
+Running command ['setFeatures', [2]]
+Running command ['updateConfig', {'debug': 0, 'debug_domains': [], 'prefile': [], 'verbose': False, 'dump_signatures': [], 'profile': False, 'server_timeout': None, 'force': False, 'invalidate_stamp': None, 'dry_run': False, 'extra_assume_provided': [], 'abort': True, 'postfile': []}, {'PYTHONPATH': '/home/nick/catkin_ws/devel/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages', 'TERMINATOR_UUID': 'urn:uuid:e7737bee-0553-4311-af1d-3c06dc776a97', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'XDG_RUNTIME_DIR': '/run/user/1000', 'USER': 'nick', 'LC_IDENTIFICATION': 'en_AU.UTF-8', 'QT_ACCESSIBILITY': '1', 'GTK2_MODULES': 'overlay-scrollbar', 'BUILDDIR': '/home/nick/4', 'LC_MONETARY': 'en_AU.UTF-8', 'OLDPWD': '/home/nick/4/poky', 'TERM': 'xterm', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-PBArWebdSJ', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '14190', 'XDG_SESSION_ID': '1', 'XDG_DATA_DIRS': '/usr/share/gnome:/usr/local/share:/usr/share:/var/lib/snapd/desktop', 'WINDOWID': '25165828', 'LANG': 'en_US.UTF-8', 'XMODIFIERS': '@im=ibus', 'PWD': '/home/nick/4', 'LC_NUMERIC': 'en_AU.UTF-8', 'LD_LIBRARY_PATH': '/home/nick/catkin_ws/devel/lib:/opt/ros/kinetic/lib:/opt/ros/kinetic/lib/x86_64-linux-gnu', 'LC_TELEPHONE': 'en_AU.UTF-8', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'XDG_CURRENT_DESKTOP': 'GNOME', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'QT4_IM_MODULE': 'xim', 'LC_ADDRESS': 'en_AU.UTF-8', 'IM_CONFIG_PHASE': '1', 'XDG_SESSION_DESKTOP': 'gnome', 'GNOME_KEYRING_CONTROL': '', 'LC_NAME': 'en_AU.UTF-8', 'GJS_DEBUG_OUTPUT': 'stderr', 'LC_PAPER': 'en_AU.UTF-8', 'QT_IM_MODULE': 'ibus', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'XDG_MENU_PREFIX': 'gnome-', 'BB_ENV_EXTRAWHITE': 'ALL_PROXY BBPATH_EXTRA BB_NO_NETWORK BB_NUMBER_THREADS BB_SETSCENE_ENFORCE BB_SRCREV_POLICY DISTRO FTPS_PROXY FTP_PROXY GIT_PROXY_COMMAND HTTPS_PROXY HTTP_PROXY MACHINE NO_PROXY PARALLEL_MAKE SCREENDIR SDKMACHINE SOCKS5_PASSWD SOCKS5_USER SSH_AGENT_PID SSH_AUTH_SOCK STAMPS_DIR TCLIBC TCMODE all_proxy ftp_proxy ftps_proxy http_proxy https_proxy no_proxy ', 'QT_LINUX_ACCESSIBILITY_ALWAYS_ON': '1', 'USERNAME': 'nick', 'DESKTOP_SESSION': 'gnome', 'LC_TIME': 'en_AU.UTF-8', 'SESSION_MANAGER': 'local/nick-XPS-13-9350:@/tmp/.ICE-unix/1616,unix/nick-XPS-13-9350:/tmp/.ICE-unix/1616', 'CMAKE_PREFIX_PATH': '/home/nick/catkin_ws/devel:/opt/ros/kinetic', 'GNOME_KEYRING_PID': '', 'ROS_DISTRO': 'kinetic', 'ROS_PACKAGE_PATH': '/home/nick/catkin_ws/src/arm-control-dreamteam/arm_controllers:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_control:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_description:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_gazebo:/home/nick/catkin_ws/src/arm-control-dreamteam/elfin/elfin_launch:/home/nick/catkin_ws/src/moro_group1/filtering_utils:/home/nick/catkin_ws/src/marker_rviz_plugin:/home/nick/catkin_ws/src/moro_group1/moro_localization:/home/nick/catkin_ws/src/moro_group1/moro_ros:/home/nick/catkin_ws/src/moro_group1/moro_simulator:/home/nick/catkin_ws/src/ros_best_practices/ros_package_template:/home/nick/catkin_ws/src/rospy_message_converter:/home/nick/catkin_ws/src/rqt_robot_dashboard:/home/nick/catkin_ws/src/stage_ros:/home/nick/catkin_ws/src/teleop_twist_keyboard:/opt/ros/kinetic/share', '_': '/home/nick/4/poky/bitbake/bin/bitbake', 'PAPERSIZE': 'a4', 'GTK_IM_MODULE': 'ibus', 'HOME': '/home/nick', 'GIO_LAUNCHED_DESKTOP_FILE': '/usr/share/applications/terminator.desktop', 'XDG_SESSION_TYPE': 'x11', 'MANDATORY_PATH': '/usr/share/gconf/gnome.mandatory.path', 'LC_ALL': 'en_US.UTF-8', 'ROSLISP_PACKAGE_DIRECTORIES': '/home/nick/catkin_ws/devel/share/common-lisp', 'ROS_VERSION': '1', 'GTK_MODULES': 'gail:atk-bridge', 'ROS_ROOT': '/opt/ros/kinetic/share/ros', 'JOB': 'dbus', 'SHLVL': '1', 'LC_MEASUREMENT': 'en_AU.UTF-8', 'XDG_SEAT': 'seat0', 'SESSION': 'gnome', 'CLUTTER_IM_MODULE': 'xim', 'BBPATH': '/home/nick/4', 'DEFAULTS_PATH': '/usr/share/gconf/gnome.default.path', 'UPSTART_SESSION': 'unix:abstract=/com/ubuntu/upstart-session/1000/1376', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'DISPLAY': ':0', 'SHELL': '/bin/bash', 'INSTANCE': '', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'XDG_VTNR': '7', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:', 'ROS_MASTER_URI': 'http://localhost:11311', 'COLORTERM': 'gnome-terminal', 'PKG_CONFIG_PATH': '/home/nick/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig', 'ROS_ETC_DIR': '/opt/ros/kinetic/etc/ros', 'WINDOWPATH': '7', 'PATH': '/home/nick/4/poky/scripts:/home/nick/4/poky/bitbake/bin:/opt/ros/kinetic/bin:/home/nick/bin:/home/nick/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'SESSIONTYPE': 'gnome-session', 'IBUS_DISABLE_SNOOPER': '1', 'ORBIT_SOCKETDIR': '/tmp/orbit-nick', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'GDMSESSION': 'gnome', 'GPG_AGENT_INFO': '/home/nick/.gnupg/S.gpg-agent:0:1', 'LOGNAME': 'nick', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-gnome:/usr/share/upstart/xdg:/etc/xdg'}, ['/home/nick/4/poky/bitbake/bin/bitbake', 'core-image-minimal']]
+Running command ['getVariable', 'BBINCLUDELOGS']
+Running command ['getVariable', 'BBINCLUDELOGS_LINES']
+Running command ['getSetVariable', 'BB_CONSOLELOG']
+Running command ['getUIHandlerNum']
+Running command ['setEventMask', 1, 20, {}, ['bb.runqueue.runQueueExitWait', 'bb.event.LogExecTTY', 'logging.LogRecord', 'bb.build.TaskFailed', 'bb.build.TaskBase', 'bb.event.ParseStarted', 'bb.event.ParseProgress', 'bb.event.ParseCompleted', 'bb.event.CacheLoadStarted', 'bb.event.CacheLoadProgress', 'bb.event.CacheLoadCompleted', 'bb.command.CommandFailed', 'bb.command.CommandExit', 'bb.command.CommandCompleted', 'bb.cooker.CookerExit', 'bb.event.MultipleProviders', 'bb.event.NoProvider', 'bb.runqueue.sceneQueueTaskStarted', 'bb.runqueue.runQueueTaskStarted', 'bb.runqueue.runQueueTaskFailed', 'bb.runqueue.sceneQueueTaskFailed', 'bb.event.BuildBase', 'bb.build.TaskStarted', 'bb.build.TaskSucceeded', 'bb.build.TaskFailedSilent', 'bb.build.TaskProgress', 'bb.event.ProcessStarted', 'bb.event.ProcessProgress', 'bb.event.ProcessFinished']]
+Running command ['getVariable', 'BB_DEFAULT_TASK']
+Running command ['setConfig', 'cmd', 'build']
+Running command ['buildTargets', ['core-image-minimal'], 'build']
+Running command ['stateShutdown']
+Running command ['stateForceShutdown']
+Connecting Client
+Disconnecting Client
+No timeout, exiting.
+Exiting

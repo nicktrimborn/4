@@ -1,0 +1,18 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.autoComplete.extraPaths": [
+			"/home/nick/catkin_ws/devel/lib/python2.7/dist-packages",
+			"/opt/ros/kinetic/lib/python2.7/dist-packages"
+		],
+		"files.associations": {
+			"io.h": "c",
+			"platform_device.h": "c",
+			"init.h": "c"
+		}
+	}
+}
