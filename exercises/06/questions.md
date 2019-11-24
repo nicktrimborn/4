@@ -14,38 +14,39 @@
 * The platform device drivers are linked to the device tree using the the compatible id
 * The device tree includes a platform device, and it will be instantiated and matched against a driver. 
 * Memory-mapped I/O and interrupt resources will be marshalled from the device tree description and made available to the device's probe() function.
-* Drivers expecting platform data should check the dev.platform_data pointer in the usual way. If there is a non-null value there, the driver has been instantiated in the traditional way and device tree does not enter into the picture; the platform data should be used in the usual way. If, however, the driver has been instantiated from the device tree code, the platform_data pointer will be null, indicating that the information must be acquired from the device tree directly.
 
 ## 4. Why did we bother to rewrite the LKM code to implement a platform device driver?
 * Want to use the Device Model for devices that are not on buses that can auto-detect devices
 * Description through a Device Tree .dts file, manage them through the platform bus.  
 * The platform bus is used by the driver to retrieve information about the device such as IRQ numbers, platform resources and other properties.  With the LKM this was all hardcoded
+* With the LKM the HW addresses were hardcoded, so on a different device, that driver would not have worked. Now we have a "configurable" driver, that is configurable via the device tree and is therefore more portable
 
 ## 5. Imagine you are developing a product on the PYNQ-Z1 board involving several IP blocks of your own design to squeeze all the resources and cabalities of the SoC FPGA; most IP blocks are accessible from the PS through the AMBA/AXI bus. Do you need to alter the device-tree we are using? What's the minimum set of information that you would require for each addressable IP block?
 * Would need to add a device tree entry for each IP Block
 * Specify compatible ID which is linked to the device tree using struct of_device_id properties
-* Need to provide memory address
+* Need to provide start and end memory addresses
 
 ## 6. What capabilities are exposed through the current sysfs interface of the `irqgen`? Describe the available entry points inside `/sys/kernel/irqgen` and their functions.
 #### Generation/Control
 * Amount - amount of interrupts to generate
-* line - interrup line 
+* line - interrup line on which to generate irqs
 * delay - interrupt generation delay
 * enabled - enable/disable irqgenerator ip block
 #### Results
-* latency - latency of last irq server (ns)
-* latencies - latencies (clock edges) for each line
-* line_count - interrupt line count
-#### Bookeeping / Platform specific
+* latency - latency of last irq served (ns)
+* latencies - circular buffer for IRQ latencies from the IRQ generator, capacity is MAX_LATENCIES elems
+#### Bookeeping / Platform driver specific
 * count_register - count since boot
-* intr_acks - ack values from devicetree
-* intr_ids - linux IRQ number
-* intr_idx - interupt index
-* intr_handled - count of interupts handled by each line
-* total_handled - total number of interupts handled
+* intr_acks - the interrupt ACK values read from the device tree
+* intr_ids - the interrupt IDs allocated for the IRQ lines
+* intr_idx - incremental index for each IRQ line
+* intr_handled - count of total handled interrupts per interrupt ID
+* total_handled - count of total handled interrupts
 
 ## 7. Are there code sections that are missing concurrency barriers? Where? Can you think of a way of triggering unintended behaviour?
-* IRQ handler implement concurrency barries when reading and writing register values
-* Need to ensure IP block contol such as enable/disable etc are not executed while interup generation/handling is occuring 
+* IRQ handler implement needs to implement concurrency barries when reading and writing register values
+* members of irqgen_data need to be protected from concurrent access
+* If we trigger another interrupt while the handler is still running, that might cause problems.
 ## 8. Feedback (what was difficult? what was easy? how would you improve it?)
 * Instructions were clear and helpful
+* a few sneaky missing memory allocations
