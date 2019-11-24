@@ -404,12 +404,6 @@ static const struct of_device_id irqgen_of_ids[] = {
 	{/* end of list */}
 };
 
-
-static const struct of_device_id irqgen_of_ids[] = {
-    { .compatible = PROP_COMPATIBLE, },
-    { /* end of list */ }
-};
-
 static struct platform_driver irqgen_pdriver = {
     .driver = {
         .name = DRIVER_NAME,
