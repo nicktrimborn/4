@@ -2,6 +2,7 @@
 #define __IRQGEN_HEADER
 
 #include <linux/platform_device.h>  // Platform device related functions
+#include <linux/spinlock.h>
 
 #ifdef DEBUG
 # define DRIVER_NAME "irqgen_dbg"
@@ -48,9 +49,10 @@ struct irqgen_data {
     u32 *intr_ids;
     u32 *intr_idx;
     u32 *intr_acks;
+    unsigned long flags;
+    spinlock_t s_lock;
 
-    // TODO: how to protect the shared r/w members of this structure?
-
+    // DONE: how to protect the shared r/w members of this structure?
     /* The members below must be protected from concurrent access */
     u32 *intr_handled;
     u32 total_handled;

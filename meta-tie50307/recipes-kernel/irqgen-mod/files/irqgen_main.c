@@ -38,7 +38,7 @@ struct irqgen_data *irqgen_data = NULL;
 static struct platform_driver irqgen_pdriver;
 
 /* vvvv ---- LKM Parameters vvvv ---- */
-static unsigned int generate_irqs = 1;
+static unsigned int generate_irqs = 0;
 module_param(generate_irqs, uint, 0444);
 MODULE_PARM_DESC(generate_irqs, "Amount of IRQs to generate at load time.");
 
@@ -119,11 +119,13 @@ static irqreturn_t irqgen_irqhandler(int irq, void *data)
     latency = irqgen_read_latency_clk();
 
     // TODO: handle concurrency
-    // {{{ CRITICAL SECTION
-    ++irqgen_data->total_handled;
-    ++irqgen_data->intr_handled[idx];
-    irqgen_data_push_latency(idx, latency, timestamp);
-    // }}}
+    spin_lock_irqsave(&irqgen_data->s_lock, irqgen_data->flags);
+        // {{{ CRITICAL SECTION
+        ++irqgen_data->total_handled;
+        ++irqgen_data->intr_handled[idx];
+        irqgen_data_push_latency(idx, latency, timestamp);
+        // }}}
+    spin_unlock_irqrestore(&irqgen_data->s_lock, irqgen_data->flags);
 
     return IRQ_HANDLED;
 }
@@ -160,7 +162,7 @@ void do_generate_irqs(uint16_t amount, uint8_t line, uint16_t delay)
                     | FIELD_PREP(IRQGEN_GENIRQ_REG_F_LINE,      line);
 
     printk(KERN_DEBUG KMSG_PFX "Generating %u interrupts with IRQ delay %u on line %d.\n",
-           amount, delay, line);
+            amount, delay, line);
 
     iowrite32(regvalue, IRQGEN_GENIRQ_REG);
 }
@@ -321,6 +323,8 @@ static int irqgen_probe(struct platform_device *pdev)
         printk(KERN_ERR KMSG_PFX "chardev setup failed.\n");
         goto err_cdev_setup;
     }
+
+    // irqgen_data->irqgen_slock = SPIN_LOCK_UNLOCKED;
 
     return 0;
 
