@@ -7,6 +7,8 @@ ID=056C-3FA9
 echo "Copying files"
 # cp -L ~/4/exercises/04/bitstream ${SDCARD}
 cp -L ~/4/exercises/05/bitstream ${SDCARD}
+chmod +x /4/exercises/07/statistics
+cp -L ~/4/exercises/07/statistics ${SDCARD}
 cp -L ~/4/build/tmp/deploy/images/pynq/boot.bin ${SDCARD}
 cp -L ~/4/build/tmp/deploy/images/pynq/uImage ${SDCARD}
 cp -L ~/4/build/tmp/deploy/images/pynq/u-boot.img ${SDCARD}
