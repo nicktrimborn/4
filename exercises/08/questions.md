@@ -5,7 +5,6 @@
     Linux pynq 4.9.0-xilinx-v2017.3 #1 SMP PREEMPT Thu Aug 9 16:33:05 UTC 2018 armv7l GNU/Linux
 
 ## 2. What is the average latency and worst case latency you measure after Ex 7 using the application you developed?
-    -to be completed
 
 ## 3. What is `uname -a` output on the PYNQ board after rebooting with the new kernel image?
 
