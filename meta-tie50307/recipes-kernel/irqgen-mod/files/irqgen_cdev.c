@@ -21,7 +21,7 @@
 #define IRQGEN_CDEV_CLASS "irqgen-class"
 
 struct irqgen_chardev {
-    struct semaphore sem;
+    // struct semaphore sem;
     struct cdev cdev;
     dev_t devt;
     struct device *dev;
@@ -84,7 +84,7 @@ int irqgen_cdev_setup(struct platform_device *pdev)
         goto err_device_create;
     }
     // TODO: do we need a sync mechanism for any cdev operation?
-    sema_init(&irqgen_chardev.sem, 1);
+    // sema_init(&irqgen_chardev.sem, 1);
     return 0;
     // DONE: use labels to handle errors and undo any resource allocation
 err_device_create:
@@ -118,12 +118,12 @@ static int irqgen_cdev_open(struct inode *inode, struct file *f)
 # ifdef DEBUG
     printk(KERN_DEBUG KMSG_PFX "irqgen_cdev_open() called.\n");
 # endif
-    down(&irqgen_chardev.sem);
+    // down(&irqgen_chardev.sem);
     if (already_opened) {
         return -EBUSY;
     }
     already_opened = 1;
-    up(&irqgen_chardev.sem);
+    // up(&irqgen_chardev.sem);
     return 0;
 }
 
@@ -171,7 +171,7 @@ static ssize_t irqgen_cdev_read(struct file *fp, char *ubuf, size_t count, loff_
 
     v = irqgen_data->latencies[irqgen_data->rp];
     irqgen_data->rp = (irqgen_data->rp + 1)%MAX_LATENCIES;
-
+    spin_unlock_irqrestore(&irqgen_data->s_lock, irqgen_data->flags);
     ret = scnprintf(kbuf, KBUF_SIZE, "%u,%lu,%llu\n", v.line, v.latency, v.timestamp);
     if (ret < 0) {
         goto end;
@@ -180,12 +180,13 @@ static ssize_t irqgen_cdev_read(struct file *fp, char *ubuf, size_t count, loff_
         goto end;
     }
 
-    // TODO: how to transfer from kernel space to user space?
-    *f_pos += ret;
-    copy_to_user( ubuf, kbuf, ret);
+    // TODO: how to transfer from kernel space to usrooter space?
+    *f_pos += ret+1;
+    // copy_to_user( ubuf, kbuf, ret+1);
+    copy_to_user( ubuf, kbuf, ret+1);
 
 end:
-    spin_unlock_irqrestore(&irqgen_data->s_lock, irqgen_data->flags);
+    // spin_unlock_irqrestore(&irqgen_data->s_lock, irqgen_data->flags);
     return ret;
 #undef KBUF_SIZE
 }

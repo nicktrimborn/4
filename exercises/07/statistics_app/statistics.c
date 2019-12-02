@@ -2,6 +2,7 @@
 #include <string.h>
 #include <signal.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 
 #define BUFFER_SIZE BUFSIZ /* or some other number */
@@ -16,7 +17,7 @@ float avg_line_latency[16];
 int max_line_latency[16];
 
 void increment_statistics(char* origbuffer) {
-    char buffer[60];
+    char buffer[BUFSIZ];
     strcpy (buffer, origbuffer);
     if(buffer != NULL) {
         int line, latency, timestamp;
@@ -46,10 +47,14 @@ void increment_statistics(char* origbuffer) {
 
 int main(int argc, const char **argv) {
 
+    struct sigaction action;
+    memset(&action, 0, sizeof(struct sigaction));
+    action.sa_handler = intHandler;
+    sigaction(SIGTERM, &action, NULL);
+
     printf("Statistics application Running, end with ctrl+c\n");
     signal(SIGINT, intHandler);
     char stdin_buf[BUFFER_SIZE];
-    char stdout_buf[BUFFER_SIZE];
     char *cur_string;
     cur_string = fgets(stdin_buf, BUFSIZ, stdin);
     while (keepRunning) {

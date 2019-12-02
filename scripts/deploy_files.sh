@@ -1,6 +1,6 @@
 #!/bin/sh
-SDCARD=/media/$USER/57C5-A5A3
-ID=57C5-A5A3
+SDCARD=/media/$USER/5FE1-9D72
+ID=5FE1-9D72
 # udisksctl mount -b $(mount | grep ${ID} | cut -d" "  -f1)
 # udisksctl mount -b ${SDCARD}
 #rm -R .

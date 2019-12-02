@@ -265,10 +265,7 @@ static int irqgen_probe(struct platform_device *pdev)
                         pdev, irqs_count, GFP_KERNEL);
     DEVM_KZALLOC_HELPER(irqgen_data->intr_handled,
                         pdev, irqs_count, GFP_KERNEL);
-    //Allocate memeory for latencies
-    DEVM_KZALLOC_HELPER(irqgen_data->latencies,
-                        pdev, irqs_count, GFP_KERNEL);
-    
+        
     irqgen_data->line_count = irqs_count;
     retval = of_property_read_u32_array(pdev->dev.of_node, PROP_WAPICE_INTRACK,
                                         irqgen_data->intr_acks, irqs_count);
@@ -325,7 +322,7 @@ static int irqgen_probe(struct platform_device *pdev)
     }
 
     // irqgen_data->irqgen_slock = SPIN_LOCK_UNLOCKED;
-
+    spin_lock_init(&irqgen_data->s_lock);
     return 0;
 
 err_cdev_setup:
