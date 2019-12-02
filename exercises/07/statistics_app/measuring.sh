@@ -1,13 +1,12 @@
 #!/bin/sh
 
 APP=/mnt/microsd/statistics
-AMOUNT=50  
-# delay=0
+AMOUNT=500 
 ( tail -f /dev/irqgen | tee /root/latencies.csv | $APP ) &
-#sleep 2
 # ( tail -f /dev/irqgen | tee /root/latencies.csv ) &
-echo "entering for loops"
-# for i in $(seq 1 10); do
+
+echo "Generation Started\n"
+for i in $(seq 1 10); do
     # echo $seq
     for line in $(seq 0 15); do
         for delay in 0 100 1000 10000 ; do
@@ -26,10 +25,10 @@ echo "entering for loops"
             done
         done
     done
-# done
-
+done
 sleep 5
-
+echo "Interupt Generation Completed, ctrl+c to exit\n"
+sleep 3
 kill -INT %1
 
 
