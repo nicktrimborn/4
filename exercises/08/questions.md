@@ -6,24 +6,6 @@
 
 ## 2. What is the average latency and worst case latency you measure after Ex 7 using the application you developed?
 #### output:
-    0,11852,231.29,3645
-    1,11783,238.17,3998
-    2,11670,236.34,4908
-    3,11022,241.58,4769
-    4,10647,233.29,4455
-    5,9532,248.60,29031
-    6,10569,229.14,4305
-    7,8770,237.27,3819
-    8,8644,240.83,3800
-    9,8532,247.89,3253
-    10,9273,236.28,3333
-    11,11241,243.42,3841
-    12,10822,218.51,4201
-    13,10174,233.07,3748
-    14,10047,231.73,3313
-    15,10748,279.84,347567
-    -1,165326,239.20,347567
-
     0,20000,275.69,344423
     1,20000,236.90,192783
     2,20000,242.32,5014
@@ -85,6 +67,10 @@
 ## 9. Using the information in [scripts/README.txt](scripts/README.txt), try to tune the RT-system to overcome the limits described in the previous question
 
 ## 10. What is the goal of this exercise? What did you accomplish?
+* The goal is to benchmark the IRQ handling latency of the developed LKM module
+* compare the differences between the regular Linux environment and this Real-Time solution
+* analyse the effect on average and maximum latencies between the regular Linux environment and the Real-Time solution
+* analyse the effect on average and maximum latencies when modifying the IRQ handler thread priority and scheduled CPU time.
 
 ## 11. Feedback (what was difficult? what was easy? how would you improve it?)
-
+* tasks were relatively straight forward. Disabling the ack was step was quite ambiguous
