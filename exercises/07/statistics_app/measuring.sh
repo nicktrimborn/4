@@ -21,7 +21,7 @@ for i in $(seq 1 10); do
                 if [ $tgt -le $(cat /sys/kernel/irqgen/total_handled) ]  ; then
                     break
                 fi
-                sleep 0.1
+                sleep 0.3
             done
         done
     done
