@@ -3,7 +3,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <unistd.h>
-
+#include <errno.h>
 
 #define BUFFER_SIZE BUFSIZ /* or some other number */
 static volatile int keepRunning = 1;
@@ -44,22 +44,20 @@ void increment_statistics(char* origbuffer) {
     }
 }
 
-
 int main(int argc, const char **argv) {
-
-    struct sigaction action;
-    memset(&action, 0, sizeof(struct sigaction));
-    action.sa_handler = intHandler;
-    sigaction(SIGTERM, &action, NULL);
-
     printf("Statistics application Running, end with ctrl+c\n");
     signal(SIGINT, intHandler);
-    char stdin_buf[BUFFER_SIZE];
+
+
+    //signal(SIGINT, intHandler);
+    
+	char stdin_buf[BUFFER_SIZE];
     char *cur_string;
     cur_string = fgets(stdin_buf, BUFSIZ, stdin);
     while (keepRunning) {
-        if(cur_string != NULL)// printf(stdin_buf);
+        if(cur_string != NULL) {
             increment_statistics(stdin_buf);
+		}
         cur_string = fgets(stdin_buf, BUFSIZ, stdin);
     }
 
@@ -88,5 +86,6 @@ int main(int argc, const char **argv) {
     }
     // Print line independent statistics
     printf("%d,%d,%.2f,%d\n", -1, total_int, (float)(running_average/num_to_average), max_latency);
+    
     return 0;    
 }
