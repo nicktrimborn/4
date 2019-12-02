@@ -12,9 +12,9 @@ void intHandler(int dummy) {
     keepRunning = 0;
 }
 
-int line_count[16];
-float avg_line_latency[16];
-int max_line_latency[16];
+long line_count[16];
+double avg_line_latency[16];
+long max_line_latency[16];
 
 void increment_statistics(char* origbuffer) {
     char buffer[BUFSIZ];
@@ -47,8 +47,6 @@ void increment_statistics(char* origbuffer) {
 int main(int argc, const char **argv) {
     printf("Statistics application Running, end with ctrl+c\n");
     signal(SIGINT, intHandler);
-
-
     //signal(SIGINT, intHandler);
     
 	char stdin_buf[BUFFER_SIZE];
