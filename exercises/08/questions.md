@@ -1,6 +1,8 @@
 # TIE-50307 - Exercise 08 - Q&A
 
 ## 1. What is `uname -a` output on the PYNQ board before starting Ex 8?
+##### The output of "uname -a" on te PYNQ board is:
+    Linux pynq 4.9.0-xilinx-v2017.3 #1 SMP PREEMPT Thu Aug 9 16:33:05 UTC 2018 armv7l GNU/Linux
 
 ## 2. What is the average latency and worst case latency you measure after Ex 7 using the application you developed?
 
