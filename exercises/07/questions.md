@@ -14,7 +14,7 @@ Character devices are devices that transfers a streams of bytes directly from ke
 * Provides data a character at a time in a sequential data stream
 
 #### Block devices:
-* addressable in device-specified chunks called blocks and generally support seeking
+* Addressable in device-specified chunks called blocks and generally support seeking
 * Block Device is a device whose driver communicates by sending entire blocks of data and can provide random access data
 
 ## 3. What design limits of the Ex6 version of `irqgen-mod` do we try to address adding a character device?
@@ -41,33 +41,36 @@ structure
 to the OS. 
 * It contains material that helps the OS find the underlying file structure (Pipe, 
 directory, regular disk file block/character device file 
+
 #### Struct file
 * struct file structure is actually a higher level of file description that
 represents an open file in the kernel and which relies on the lower
 struct_inode
-* It is used as generic structure that represent and open file and provices set 
-a functions related to method one can perform on the underlying file
+* It is used as generic structure that represent and open file and provices a set 
+of functions related to methods one can perform on the underlying file
 structure.
 * Such methods are open, write , seek, read, select
+
 #### Differences (device node vs regular file)
 ##### Device node:
-* correspond to resources that have already been allocated by the operating system Kernel
-* identified by a major number (device driver) and a minor number(devices), which are stored as part of the structure of a node
-* major number identifies the device driver and the minor number identifies a particular device (possibly out of many) that the driver controls, and is passed to the driver as an argument
+* Correspond to resources that have already been allocated by the operating system Kernel
+* Identified by a major number (device driver) and a minor number(devices), which are stored as part of the structure of a node
+* Major number identifies the device driver and the minor number identifies a particular device (possibly out of many) that the driver controls, and is passed to the driver as an argument
+
 ##### Regular file:
 * User read/writeable
 * Supports various formats
 * Kernel memory not allocated
 
 #### Similarity
-* device nodes are accessed using standard system calls and treated like regular files
+* Device nodes are accessed using standard system calls and treated like regular files
 
 ## 6. Which parts of our LKM code are potentially running in parallel? Which parts could interact in a conflicting way? Make a few concrete examples of conditions in which conflicts in concurrency may arise.
 #### Parallel execution and conflicts
-* need to protect members of irqgen_data from concurrent access to protect the data integrity
+* Need to protect members of irqgen_data from concurrent access to protect the data integrity
 * As interruts are generating intr_handled, total_handled, latencies, wp and rp are changing
-* at the same time they are trying to be accessed in cdev read, and sysfs _show functions
-* need to use spinlocks to ensure access read/write sequence is not affected
+* At the same time they are trying to be accessed in cdev read, and sysfs _show functions
+* Need to use spinlocks to ensure access read/write sequence is not affected
 
 #### specifically:
     u32 *intr_handled;
