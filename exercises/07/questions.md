@@ -49,7 +49,6 @@ struct_inode
 a functions related to method one can perform on the underlying file
 structure.
 * Such methods are open, write , seek, read, select
-
 #### Differences (device node vs regular file)
 ##### Device node:
 * correspond to resources that have already been allocated by the operating system Kernel
@@ -118,7 +117,7 @@ An SDK is a Software Development Kit
 * Libraries, Headers, and Symbols: The libraries, headers, and symbols are specific to the image (i.e. they match the image).
 * Environment Setup Script: This *.sh file, once run, sets up the cross-development environment by defining variables and preparing for SDK use.
 
-The Yocto SDK is completely self-contained and is used to to is used to independently develop and test code that is destined to run on some target machine.
+The Yocto SDK is completely self-contained and is used to independently develop and test code that is destined to run on some target machine.
 
 In this excersise the SDK was used to cross-compile the statistics application on the virtual machine to run on the specific image of the pynq board
 
@@ -135,15 +134,18 @@ In this excersise the SDK was used to cross-compile the statistics application o
 ## 12. Describe your workflow in developing and testing the `irqgen_statistics` app
 * The character driver was developed and tested first.
 * Interupts were generated using the sysfs /sys/kernel/irqgen/ interface and stored into a .csv file. this file was copied from the pynq board to the virtual machine via the sdcard
-    - tail -f /dev/irqgen | tee -a ~/irqgen.csv &
+
+``` 
+tail -f /dev/irqgen | tee -a ~/irqgen.csv & 
+```
+
 * The statistics app was developed and tested on the virtual machine enviromnent with this .csv file
 * the application continuously reads from stdin using fgets
 * the .csv fields are tokenised and extracted using the strtok
 * Internal int and float arrays are used to store the required statistics for each IRQ line
 * Counts are incrimented, averages are calculated and maximums determined and stored in these arrays
-* The application implements a signal handler the waits for the SIGINT signal to stop waiting for input.
-* After receiving this signal, statistics are printed to the user using printf based on the specification
-and the program exist gracfully
+* The application implements a signal handler that waits for the SIGINT signal to stop waiting for input.
+* After receiving this signal, statistics are printed to the user using printf based on the specification and the program exist gracefully
 * After the program was tested sucessfully on the virtual machine, it was cross compiled using the sdk and copied to the sdcard
 * The measuring.sh script was then used to test the system, and print the required statistics using the cross-compiled app
 
