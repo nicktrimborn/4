@@ -103,10 +103,11 @@ structure.
 * The critical section for updating the irqgen_data data structure is spin_locked to prevent concurrency issues.
 * the handler returns once these task are completed indicating that the IRQ has been sucessfully served
 #### Alternative:
-* An alternative to the above monolithic approach would be to have a more layered approach
-* Non-critical section and acknowledge sections could be handled separately to the critical section. 
+* An alternative to the above monolithic approach would be to have a more layered approach (Top-half / bottom-half)
+* Non-critical section and acknowledge sections could be handled separately to the critical section.
+* In the Top-half the interrupt could be acknowledged and interrupt handled could be returned.  The critical section and data storage could be scheduled to execute later (tasklet or Workqueue)
 * This approach may mean that the interrupt handler can return quicker to reduce latency in interrupt handling.  
-* As a multi-layered approach would not block the whole interrupt handling block (spin locked critical section) and could improve handling latency
+* As a multi-layered approach would not block the whole interrupt handler (spin locked critical section) and could improve handling latency
 * As such acknowledgment and data read/write would be occuring separately
 
 ## 10. What is an SDK?
