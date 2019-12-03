@@ -59,7 +59,7 @@
 ## 5. Compare the results of questions 2 and 4; do they differ significantly? why?
 
 * Average latency is increased after adding the RT-PREEMPT Patch to the kernel.
-* Latencies of each line are much smaller and consistent, except for one outlier on line 4 which gives the worst case latency.
+* With the RT-PREEMPT Patch, worst case latencies of each line are much smaller and consistent, except for one outlier on line 4.
 
 ## 6. Compare the plots for the 8 different profiles. Describe each of them and compare them?
 #### non-RT_noTorture
