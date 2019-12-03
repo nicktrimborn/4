@@ -83,7 +83,15 @@ IP-Block to the processing system.
 * Pynq has multiple processors so spin_lock makes sense.  we believe the time spent in the lock is quite short, and thus may be more efficient than a mutex however no comparison was made in performance.
 
 ## 9. To optimize even more the IRQ handling latency we should abandon the monolithic handler function for a more efficient pattern: what's its name? Describe how the code currently handling the requests would be organized and describe a few reasons to choose the alternative over the monolithic style.
-* 
+* The interrupt handler currently works by acknowledging the interrupt by setting the appropriate register on the IP-Block
+* The critical section for updating the irqgen_data data structure is spin_locked to prevent concurrency issues.
+* the handler returns once these task are completed indicating that the IRQ has been sucessfully served
+#### Alternative:
+* An alternative to the above monolithic approach would be to have a more layered approach
+* Non-critical section and acknowledge sections could be handled separately to the critical section. 
+* This approach may mean that the interrupt handler can return quicker to reduce latency in interrupt handling.  
+* As a multi-layered approach would not block the whole interrupt handling block (spin locked critical section) and could improve handling latency
+* As such acknowledgment and data read/write would be occuring separately
 
 ## 10. What is an SDK?
 An SDK is a Software Development Kit
