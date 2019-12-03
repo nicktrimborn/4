@@ -153,4 +153,4 @@ tail -f /dev/irqgen | tee -a ~/irqgen.csv &
 * The measuring.sh script was then used to test the system, and print the required statistics using the cross-compiled app
 
 ## 13. Feedback (what was difficult? what was easy? how would you improve it?)
-* found the excerise a little difficult.  Had alot of issues related to ensurig the locks were in the right place, also had issue getting the statistic app to behave correctly with the -INT signal sent from the measuring.sh script 
+* Found the excerise a little difficult.  Had alot of issues related to ensurig the locks were in the right place, also had issue getting the statistic app to behave correctly with the -INT signal sent from the measuring.sh script 
